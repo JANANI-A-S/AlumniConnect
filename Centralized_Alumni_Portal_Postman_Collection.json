@@ -1,0 +1,538 @@
+{
+	"info": {
+		"_postman_id": "c1f7b889-4b68-45e1-88f2-8cb234123abc",
+		"name": "Centralized Alumni Tracking & Institutional Engagement Portal",
+		"description": "Comprehensive Postman API Collection for Centralized Alumni Tracking & Institutional Engagement Portal.\n\nRoles:\n- ADMIN (admin / admin123)\n- INVOICING_USER (accountant / accountant123)\n- ALUMNI_CONTACT (alumni_user / alumni123)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "{{admin_user}}",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "{{admin_pass}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "admin_user",
+			"value": "admin",
+			"type": "string"
+		},
+		{
+			"key": "admin_pass",
+			"value": "admin123",
+			"type": "string"
+		},
+		{
+			"key": "accountant_user",
+			"value": "accountant",
+			"type": "string"
+		},
+		{
+			"key": "accountant_pass",
+			"value": "accountant123",
+			"type": "string"
+		},
+		{
+			"key": "alumni_user",
+			"value": "alumni_user",
+			"type": "string"
+		},
+		{
+			"key": "alumni_pass",
+			"value": "alumni123",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "1. Alumni Management",
+			"item": [
+				{
+					"name": "POST Register Alumni",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Jonathan Davies\",\n    \"email\": \"jonathan.davies@alum.mit.edu\",\n    \"batch\": \"Class of 2016\",\n    \"contact\": \"+1-617-555-0811\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/alumni",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alumni"]
+						},
+						"description": "Registers a new alumni profile with initial BRONZE tier and $0.00 donation total."
+					}
+				},
+				{
+					"name": "GET All Alumni (Ranked by Donation Total)",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/alumni",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alumni"]
+						},
+						"description": "Returns all registered alumni sorted in descending order of cumulative donations."
+					}
+				},
+				{
+					"name": "GET Filter & Rank Alumni (Search)",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/alumni/search?query=Vance",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alumni", "search"],
+							"query": [
+								{
+									"key": "query",
+									"value": "Vance",
+									"description": "Search by name, email, or class batch"
+								}
+							]
+						},
+						"description": "Searches alumni matching query string and returns ranked by contribution total."
+					}
+				},
+				{
+					"name": "GET Alumni By ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/alumni/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alumni", "1"]
+						}
+					}
+				},
+				{
+					"name": "PUT Update Alumni Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Dr. Eleanor Vance, Ph.D.\",\n    \"email\": \"eleanor.vance@mit-alum.edu\",\n    \"batch\": \"Class of 2010\",\n    \"contact\": \"+1-617-555-0199\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/alumni/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alumni", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "2. Campaigns",
+			"item": [
+				{
+					"name": "GET All Campaigns",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/campaigns",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "campaigns"]
+						}
+					}
+				},
+				{
+					"name": "GET Campaign By ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/campaigns/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "campaigns", "1"]
+						}
+					}
+				},
+				{
+					"name": "POST Create Campaign",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"2027 Medical Sciences Research Wing\",\n    \"description\": \"State of the art genomic sequencing and clinical laboratory facilities\",\n    \"targetAmount\": 750000.00,\n    \"startDate\": \"2026-06-01\",\n    \"endDate\": \"2027-12-31\",\n    \"status\": \"ACTIVE\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/campaigns",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "campaigns"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "3. Donations & Double-Entry Accounting",
+			"item": [
+				{
+					"name": "POST Record Donation (Auto-Generates Ledger Entry)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"alumniId\": 1,\n    \"campaignId\": 1,\n    \"productId\": 1,\n    \"amount\": 15000.00,\n    \"paymentMethod\": \"BANK_TRANSFER\",\n    \"notes\": \"Annual endowment gift for Library Science\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/donations",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "donations"]
+						},
+						"description": "Records donation, issues formal receipt number, elevates alumni ranking tier, updates campaign collected total, and generates double-entry: Debit Bank (1010), Credit Donation Revenue (4010)."
+					}
+				},
+				{
+					"name": "GET All Donations",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/donations",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "donations"]
+						}
+					}
+				},
+				{
+					"name": "GET Donation By ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/donations/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "donations", "1"]
+						}
+					}
+				},
+				{
+					"name": "GET Donation By Receipt Number",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/donations/receipt/REC-2026-INIT01",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "donations", "receipt", "REC-2026-INIT01"]
+						}
+					}
+				},
+				{
+					"name": "GET Donations By Alumni ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/donations/alumni/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "donations", "alumni", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "4. Financial Reports",
+			"item": [
+				{
+					"name": "GET Balance Sheet Report",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/reports/balance-sheet",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "reports", "balance-sheet"]
+						},
+						"description": "Endowment fund bank balances and investments vs pending campaign payables."
+					}
+				},
+				{
+					"name": "GET Profit & Loss Statement",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/reports/profit-loss",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "reports", "profit-loss"]
+						},
+						"description": "Donation revenues minus campaign marketing and event costs."
+					}
+				},
+				{
+					"name": "GET Campaign Budget Report",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/reports/budget",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "reports", "budget"]
+						},
+						"description": "Campaign budget vs actual net collections report (target vs fundraising expenses vs net contributions)."
+					}
+				}
+			]
+		},
+		{
+			"name": "5. Procurement, Bills & Payments",
+			"item": [
+				{
+					"name": "POST Create Purchase Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"vendorId\": 2,\n    \"campaignId\": 1,\n    \"amount\": 8500.00,\n    \"description\": \"Alumni Gala audio-visual production and staging setup\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/purchase-orders",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "purchase-orders"]
+						}
+					}
+				},
+				{
+					"name": "GET All Purchase Orders",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/purchase-orders",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "purchase-orders"]
+						}
+					}
+				},
+				{
+					"name": "POST Record Vendor Bill",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"purchaseOrderId\": 1,\n    \"vendorId\": 2,\n    \"amount\": 8500.00,\n    \"dueDate\": \"2026-11-15\",\n    \"notes\": \"AV production final invoice\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/vendor-bills",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "vendor-bills"]
+						},
+						"description": "Auto-creates double entry in Purchase Journal: Debit Event Expenses (5010), Credit Vendor Payables (2010)."
+					}
+				},
+				{
+					"name": "GET All Vendor Bills",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/vendor-bills",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "vendor-bills"]
+						}
+					}
+				},
+				{
+					"name": "POST Record Payment to Vendor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"vendorBillId\": 1,\n    \"amount\": 12000.00,\n    \"paymentMethod\": \"BANK_TRANSFER\",\n    \"reference\": \"WIRE-TXN-2026-0901\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/payments",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "payments"]
+						},
+						"description": "Auto-creates double entry in Bank/Cash Journal: Debit Vendor Payables (2010), Credit Bank (1010)."
+					}
+				},
+				{
+					"name": "GET All Payments",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/payments",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "payments"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "6. Master Data & Chart of Accounts",
+			"item": [
+				{
+					"name": "GET Chart of Accounts",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/chart-of-accounts",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "chart-of-accounts"]
+						}
+					}
+				},
+				{
+					"name": "POST Create Account in CoA",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"1030\",\n    \"name\": \"Campus Facilities Reserve\",\n    \"type\": \"ASSET\",\n    \"description\": \"Dedicated reserve for physical infrastructure\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/chart-of-accounts",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "chart-of-accounts"]
+						}
+					}
+				},
+				{
+					"name": "GET Journals",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/journals",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "journals"]
+						}
+					}
+				},
+				{
+					"name": "GET Double-Entry Journal Entries",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/journal-entries",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "journal-entries"]
+						}
+					}
+				},
+				{
+					"name": "GET Contacts (Donors, Vendors, Agencies)",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/contacts",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "contacts"]
+						}
+					}
+				},
+				{
+					"name": "POST Create Contact",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Beacon Sound & Staging\",\n    \"email\": \"info@beaconsound.com\",\n    \"phone\": \"+1-617-555-0988\",\n    \"organization\": \"Beacon Event Tech LLC\",\n    \"contactType\": \"VENDOR\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/contacts",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "contacts"]
+						}
+					}
+				},
+				{
+					"name": "GET Products Master",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/products",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "products"]
+						}
+					}
+				},
+				{
+					"name": "POST Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Student Research Fellowship Grant\",\n    \"productType\": \"ENDOWMENT_CONTRIBUTION\",\n    \"price\": 10000.00,\n    \"description\": \"Full academic year endowment fellowship funding student stipend\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/products",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "products"]
+						}
+					}
+				}
+			]
+		}
+	]
+}

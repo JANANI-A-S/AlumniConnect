@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centralized Alumni Tracking &amp; Institutional Engagement Portal</title>
+    <meta name="description" content="Institutional engagement platform managing alumni records, endowment campaign donations, mentorship scheduling, and university development budgets.">
+    <link rel="stylesheet" th:href="@{/css/portal.css}">
+</head>
+<body>
+
+<div class="portal-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">🏛️</div>
+            <div>
+                <div class="brand-title">Alumni Engagement</div>
+                <div class="brand-subtitle">Institutional Portal</div>
+            </div>
+        </div>
+
+        <ul class="nav-links">
+            <li>
+                <button class="nav-btn active" data-tab="tab-alumni" id="nav-btn-alumni">
+                    <span>🎓</span> Alumni &amp; Rankings
+                </button>
+            </li>
+            <li>
+                <button class="nav-btn" data-tab="tab-campaigns" id="nav-btn-campaigns">
+                    <span>🏛️</span> Endowment Campaigns
+                </button>
+            </li>
+            <li>
+                <button class="nav-btn" data-tab="tab-donations" id="nav-btn-donations">
+                    <span>💝</span> Donation Receipts
+                </button>
+            </li>
+            <li>
+                <button class="nav-btn" data-tab="tab-ledger" id="nav-btn-ledger">
+                    <span>📑</span> General Ledger Entries
+                </button>
+            </li>
+            <li>
+                <button class="nav-btn" data-tab="tab-reports" id="nav-btn-reports">
+                    <span>📊</span> Financial Reports
+                </button>
+            </li>
+        </ul>
+
+        <div class="nav-role-badge">
+            <div style="font-weight:600; color:var(--text-main);">Role-Based Auth Active</div>
+            <div style="color:var(--text-muted); font-size:11px; margin-top:2px;">REST &amp; Basic Auth Enabled</div>
+            <div class="role-tag">ADMIN | INVOICING_USER | ALUMNI</div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-wrapper">
+        <!-- Top bar -->
+        <header class="top-bar">
+            <div class="header-title">
+                <h1>Centralized Alumni Tracking &amp; Engagement</h1>
+                <p>Institutional development portal with automated double-entry ledger &amp; budget variance tracking</p>
+            </div>
+            <div class="action-bar">
+                <select id="dashboardCurrencySelect" class="currency-select" aria-label="Select dashboard currency">
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                    <option value="AED">AED - UAE Dirham</option>
+                    <option value="AUD">AUD - Australian Dollar</option>
+                    <option value="CAD">CAD - Canadian Dollar</option>
+                    <option value="SGD">SGD - Singapore Dollar</option>
+                    <option value="CNY">CNY - Chinese Yuan</option>
+                </select>
+                <button class="btn btn-outline open-alumni-modal" id="btn-register-alumni-modal">
+                    <span>+</span> Register Alumni
+                </button>
+                <button class="btn btn-primary open-donation-modal" id="btn-record-donation-modal">
+                    <span>💝</span> Record Donation
+                </button>
+            </div>
+        </header>
+
+        <!-- Executive Statistics Grid -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span>Total Endowment Collected</span>
+                    <span>📈</span>
+                </div>
+                <div class="stat-value currency-value" th:attr="data-currency-value=${profitLoss.totalRevenue}" th:text="'$' + ${#numbers.formatDecimal(profitLoss.totalRevenue, 1, 'COMMA', 2, 'POINT')}">$0.00</div>
+                <div class="stat-sub"><span>✔</span> Direct Alumni Donations &amp; Receipts</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span>Endowment Cash &amp; Bank</span>
+                    <span>🏦</span>
+                </div>
+                <div class="stat-value currency-value" th:attr="data-currency-value=${balanceSheet.totalAssets}" th:text="'$' + ${#numbers.formatDecimal(balanceSheet.totalAssets, 1, 'COMMA', 2, 'POINT')}">$0.00</div>
+                <div class="stat-sub"><span>🛡️</span> Assets (Cash, Bank &amp; Investments)</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span>Net Endowment Surplus</span>
+                    <span>✨</span>
+                </div>
+                <div class="stat-value currency-value" style="color: #38bdf8;" th:attr="data-currency-value=${profitLoss.netSurplus}" th:text="'$' + ${#numbers.formatDecimal(profitLoss.netSurplus, 1, 'COMMA', 2, 'POINT')}">$0.00</div>
+                <div class="stat-sub" th:text="${profitLoss.operatingMarginPercentage} + '% operating surplus margin'">Surplus</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span>Registered Alumni</span>
+                    <span>🎓</span>
+                </div>
+                <div class="stat-value" th:text="${#lists.size(alumniList)}">0</div>
+                <div class="stat-sub"><span>🏆</span> Ranked by Contribution Tiers</div>
+            </div>
+        </section>
+
+        <!-- TAB 1: Alumni Records & Rankings -->
+        <div class="tab-content active" id="tab-alumni">
+            <div class="glass-panel">
+                <div class="panel-title-bar">
+                    <div>
+                        <div class="panel-title">Alumni Master Directory &amp; Contribution Rankings</div>
+                        <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">
+                            Tier Thresholds: Platinum (≥$50k), Gold (≥$20k), Silver (≥$5k), Bronze (&lt;$5k)
+                        </div>
+                    </div>
+                    <div class="search-wrapper">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="alumniSearchInput" class="search-input" placeholder="Search by name, email, or batch...">
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Alumni Name</th>
+                                <th>Email</th>
+                                <th>Graduation Batch</th>
+                                <th>Contact</th>
+                                <th>Cumulative Donated</th>
+                                <th>Ranking Tier</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alumniTableBody">
+                            <tr th:each="alumni : ${alumniList}">
+                                <td style="font-weight: 600;" th:text="${alumni.name}">Name</td>
+                                <td style="color: var(--text-muted);" th:text="${alumni.email}">email@domain.com</td>
+                                <td><span style="background: rgba(255,255,255,0.06); padding: 2px 8px; border-radius: 4px; font-size: 11.5px;" th:text="${alumni.batch}">Class</span></td>
+                                <td style="color: var(--text-muted);" th:text="${alumni.contact != null ? alumni.contact : 'N/A'}">Contact</td>
+                                <td class="currency-value" style="font-weight: 700; color: #34d399;" th:attr="data-currency-value=${alumni.donationTotal}" th:text="'$' + ${#numbers.formatDecimal(alumni.donationTotal, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                                <td>
+                                    <span th:class="'tier-badge tier-' + ${alumni.rankingTier}" th:text="${alumni.rankingTier}">TIER</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: Endowment Campaigns -->
+        <div class="tab-content" id="tab-campaigns">
+            <div class="glass-panel">
+                <div class="panel-title-bar">
+                    <div>
+                        <div class="panel-title">Active Endowment &amp; Development Campaigns</div>
+                        <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">
+                            Institutional project analytics &amp; funding goals
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px;">
+                    <div class="glass-panel" style="margin-bottom:0;" th:each="campaign : ${campaigns}">
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
+                            <h3 style="font-size:16px; font-weight:700; color:#fff;" th:text="${campaign.name}">Campaign Name</h3>
+                            <span style="background: rgba(16, 185, 129, 0.15); color: #34d399; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 700;" th:text="${campaign.status}">ACTIVE</span>
+                        </div>
+                        <p style="font-size:12.5px; color:var(--text-muted); margin-bottom:16px;" th:text="${campaign.description}">Description</p>
+                        
+                        <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:4px;">
+                            <span>Progress</span>
+                            <span style="font-weight:700; color:#818cf8;" th:text="${campaign.percentageAchieved} + '%'">0%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" th:style="'width: ' + (${campaign.percentageAchieved} > 100 ? 100 : ${campaign.percentageAchieved}) + '%;'"></div>
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; margin-top:14px; font-size:12.5px;">
+                            <div>
+                                <span style="color:var(--text-muted);">Collected: </span>
+                                <strong style="color:#34d399;" th:text="'$' + ${#numbers.formatDecimal(campaign.collectedAmount, 1, 'COMMA', 2, 'POINT')}">$0.00</strong>
+                            </div>
+                            <div>
+                                <span style="color:var(--text-muted);">Goal: </span>
+                                <strong th:text="'$' + ${#numbers.formatDecimal(campaign.targetAmount, 1, 'COMMA', 2, 'POINT')}">$0.00</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: Donation Receipts -->
+        <div class="tab-content" id="tab-donations">
+            <div class="glass-panel">
+                <div class="panel-title-bar">
+                    <div>
+                        <div class="panel-title">Formal Donation Receipts &amp; Audit Records</div>
+                        <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">
+                            Issued via POST /api/donations with automated double-entry ledger reconciliation
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Receipt Number</th>
+                                <th>Alumni / Donor</th>
+                                <th>Campaign</th>
+                                <th>Amount</th>
+                                <th>Method</th>
+                                <th>Ledger Post</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="don : ${recentDonations}">
+                                <td style="font-family:monospace; font-weight:600; color:#818cf8;" th:text="${don.receiptNumber}">REC-001</td>
+                                <td style="font-weight:600;" th:text="${don.alumniName}">Alumni</td>
+                                <td th:text="${don.campaignName}">Campaign</td>
+                                <td class="currency-value" style="font-weight:700; color:#34d399;" th:attr="data-currency-value=${don.amount}" th:text="'$' + ${#numbers.formatDecimal(don.amount, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                                <td><span style="font-size:11px; background:rgba(255,255,255,0.06); padding:2px 8px; border-radius:4px;" th:text="${don.paymentMethod}">BANK</span></td>
+                                <td>
+                                    <span style="font-size:11.5px; color:#38bdf8;">Debit: </span><span th:text="${don.debitAccountName}" style="font-size:11.5px;">Bank</span><br>
+                                    <span style="font-size:11.5px; color:#34d399;">Credit: </span><span th:text="${don.creditAccountName}" style="font-size:11.5px;">Revenue</span>
+                                </td>
+                                <td style="color:var(--text-muted); font-size:12px;" th:text="${#temporals.format(don.donationDate, 'yyyy-MM-dd HH:mm')}">Date</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: General Ledger Entries -->
+        <div class="tab-content" id="tab-ledger">
+            <div class="glass-panel">
+                <div class="panel-title-bar">
+                    <div>
+                        <div class="panel-title">Endowment General Ledger &amp; Journal Entries</div>
+                        <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">
+                            Strict Double-Entry Bookkeeping: Grants Journal, Purchase Journal, Bank Journal
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Entry ID</th>
+                                <th>Journal</th>
+                                <th>Reference</th>
+                                <th>Debit Account</th>
+                                <th>Credit Account</th>
+                                <th>Amount</th>
+                                <th>Description</th>
+                                <th>Timestamp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="entry : ${recentDonations}">
+                                <td th:text="'#' + ${entry.journalEntryId}">#1</td>
+                                <td><span style="background: rgba(99, 102, 241, 0.2); color:#a5b4fc; padding: 2px 8px; border-radius:4px; font-size:11px;">Grants &amp; Donations</span></td>
+                                <td style="font-family:monospace;" th:text="${entry.receiptNumber}">REF</td>
+                                <td class="ledger-debit" th:text="${entry.debitAccountName}">Debit Bank</td>
+                                <td class="ledger-credit" th:text="${entry.creditAccountName}">Credit Revenue</td>
+                                <td style="font-weight:700;" th:text="'$' + ${#numbers.formatDecimal(entry.amount, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                                <td style="color:var(--text-muted); font-size:12px;" th:text="${entry.notes != null ? entry.notes : 'Endowment Contribution'}">Description</td>
+                                <td style="color:var(--text-muted); font-size:12px;" th:text="${#temporals.format(entry.donationDate, 'yyyy-MM-dd HH:mm')}">Date</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: Financial Reports -->
+        <div class="tab-content" id="tab-reports">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                <!-- Balance Sheet -->
+                <div class="glass-panel" style="margin-bottom:0;">
+                    <div class="panel-title-bar">
+                        <div>
+                            <div class="panel-title">1. Endowment Balance Sheet</div>
+                            <div style="font-size:11.5px; color:var(--text-muted);">As of <span th:text="${balanceSheet.asOfDate}">Today</span></div>
+                        </div>
+                        <span style="background: rgba(16, 185, 129, 0.15); color: #34d399; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 700;">BALANCED ✔</span>
+                    </div>
+
+                    <h4 style="font-size:12px; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px;">Endowment Assets</h4>
+                    <table class="custom-table" style="margin-bottom:14px;">
+                        <tr th:each="asset : ${balanceSheet.assetAccounts}">
+                            <td th:text="${asset.code} + ' - ' + ${asset.name}">Cash &amp; Bank</td>
+                            <td style="text-align:right; font-weight:600;" th:text="'$' + ${#numbers.formatDecimal(asset.balance, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                        </tr>
+                        <tr style="border-top:1px solid rgba(255,255,255,0.1); font-weight:700;">
+                            <td>Total Assets</td>
+                            <td style="text-align:right; color:#34d399;" th:text="'$' + ${#numbers.formatDecimal(balanceSheet.totalAssets, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                        </tr>
+                    </table>
+
+                    <h4 style="font-size:12px; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px;">Liabilities &amp; Endowment Equity</h4>
+                    <table class="custom-table">
+                        <tr th:each="lia : ${balanceSheet.liabilityAccounts}">
+                            <td th:text="${lia.code} + ' - ' + ${lia.name}">Vendor Payables</td>
+                            <td style="text-align:right; font-weight:600;" th:text="'$' + ${#numbers.formatDecimal(lia.balance, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td>Net Institutional Endowment Surplus (Equity)</td>
+                            <td style="text-align:right; font-weight:700; color:#38bdf8;" th:text="'$' + ${#numbers.formatDecimal(balanceSheet.netEndowmentEquity, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                        </tr>
+                        <tr style="border-top:1px solid rgba(255,255,255,0.1); font-weight:700;">
+                            <td>Total Liabilities &amp; Equity</td>
+                            <td style="text-align:right; color:#34d399;" th:text="'$' + ${#numbers.formatDecimal(balanceSheet.totalLiabilitiesAndEquity, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Profit & Loss -->
+                <div class="glass-panel" style="margin-bottom:0;">
+                    <div class="panel-title-bar">
+                        <div>
+                            <div class="panel-title">2. Profit &amp; Loss Account</div>
+                            <div style="font-size:11.5px; color:var(--text-muted);">Fiscal Year Statement</div>
+                        </div>
+                    </div>
+
+                    <h4 style="font-size:12px; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px;">Donation &amp; Event Revenues</h4>
+                    <table class="custom-table" style="margin-bottom:14px;">
+                        <tr th:each="rev : ${profitLoss.revenueAccounts}">
+                            <td th:text="${rev.code} + ' - ' + ${rev.name}">Alumni Donations Revenue</td>
+                            <td style="text-align:right; font-weight:600;" th:text="'$' + ${#numbers.formatDecimal(rev.balance, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                        </tr>
+                        <tr style="border-top:1px solid rgba(255,255,255,0.1); font-weight:700;">
+                            <td>Total Revenue</td>
+                            <td style="text-align:right; color:#34d399;" th:text="'$' + ${#numbers.formatDecimal(profitLoss.totalRevenue, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                        </tr>
+                    </table>
+
+                    <h4 style="font-size:12px; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px;">Campaign &amp; Event Costs</h4>
+                    <table class="custom-table">
+                        <tr th:each="exp : ${profitLoss.expenseAccounts}">
+                            <td th:text="${exp.code} + ' - ' + ${exp.name}">Gala &amp; Marketing Expenses</td>
+                            <td style="text-align:right; font-weight:600;" th:text="'$' + ${#numbers.formatDecimal(exp.balance, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                        </tr>
+                        <tr style="border-top:1px solid rgba(255,255,255,0.1); font-weight:700;">
+                            <td>Total Expenses</td>
+                            <td style="text-align:right; color:#f43f5e;" th:text="'$' + ${#numbers.formatDecimal(profitLoss.totalExpenses, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                        </tr>
+                        <tr style="border-top:2px solid #818cf8; font-weight:800; font-size:14px;">
+                            <td>Net Institutional Surplus</td>
+                            <td style="text-align:right; color:#38bdf8;" th:text="'$' + ${#numbers.formatDecimal(profitLoss.netSurplus, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Campaign Budget Report -->
+            <div class="glass-panel">
+                <div class="panel-title-bar">
+                    <div>
+                        <div class="panel-title">3. Campaign Budget vs. Actual Net Collections Report</div>
+                        <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">
+                            Analytic Account tracking: Campaign target vs. fundraising expenses &amp; net contributions
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Campaign Project</th>
+                                <th>Target Goal</th>
+                                <th>Actual Collections</th>
+                                <th>Campaign Expenses</th>
+                                <th>Net Contributions</th>
+                                <th>Target Variance</th>
+                                <th>% Achieved</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="b : ${budgetReport.campaignBudgets}">
+                                <td style="font-weight:600;" th:text="${b.campaignName}">Campaign</td>
+                                <td th:text="'$' + ${#numbers.formatDecimal(b.targetCollections, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                                <td style="font-weight:700; color:#34d399;" th:text="'$' + ${#numbers.formatDecimal(b.actualCollections, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                                <td style="color:#f43f5e;" th:text="'$' + ${#numbers.formatDecimal(b.campaignExpenses, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                                <td style="font-weight:700; color:#38bdf8;" th:text="'$' + ${#numbers.formatDecimal(b.netContributions, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                                <td th:text="'$' + ${#numbers.formatDecimal(b.targetVariance, 1, 'COMMA', 2, 'POINT')}">$0.00</td>
+                                <td style="font-weight:700;" th:text="${b.collectionPercentage} + '%'">0%</td>
+                                <td>
+                                    <span style="background:rgba(16, 185, 129, 0.15); color:#34d399; font-size:11px; padding:2px 8px; border-radius:4px; font-weight:700;" th:text="${b.budgetStatus}">ACTIVE</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Modal: Record Donation -->
+<div class="modal-backdrop" id="donationModal">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h3 style="font-size: 18px; font-weight: 700;">Record Endowment Donation</h3>
+            <button class="modal-close" type="button">&times;</button>
+        </div>
+        <form id="donationForm">
+            <div class="form-group">
+                <label class="form-label" for="donAlumniSelect">Select Alumni Contributor *</label>
+                <select id="donAlumniSelect" class="form-control form-select" required>
+                    <option th:each="a : ${alumniList}" th:value="${a.id}" th:text="${a.name} + ' (' + ${a.batch} + ')'"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="donCampaignSelect">Select Campaign Project *</label>
+                <select id="donCampaignSelect" class="form-control form-select" required>
+                    <option th:each="c : ${campaigns}" th:value="${c.id}" th:text="${c.name}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="donAmount">Donation Amount ($ USD) *</label>
+                <input type="number" step="0.01" min="1.00" id="donAmount" class="form-control" value="5000.00" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="donMethod">Payment Channel</label>
+                <select id="donMethod" class="form-control form-select">
+                    <option value="BANK_TRANSFER">Bank Wire / Electronic Transfer</option>
+                    <option value="CREDIT_CARD">Credit / Debit Card</option>
+                    <option value="CHEQUE">Endowment Cheque</option>
+                    <option value="ONLINE">Online Portal</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="donNotes">Pledge / Donation Memo</label>
+                <input type="text" id="donNotes" class="form-control" placeholder="E.g., Class gift pledge fulfillment">
+            </div>
+
+            <div style="background: rgba(79, 70, 229, 0.12); padding: 10px 14px; border-radius: 6px; font-size: 12px; margin-bottom: 16px; color: #a5b4fc;">
+                ⚡ <strong>Automated Ledger:</strong> Will auto-post to General Ledger (Debit: <em>Endowment Cash &amp; Bank</em>, Credit: <em>Alumni Donations Revenue</em>) and advance donor ranking tier.
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Confirm &amp; Post Donation</button>
+        </form>
+
+        <div id="donationReceiptBox" class="receipt-box" style="display: none;"></div>
+    </div>
+</div>
+
+<!-- Modal: Register Alumni -->
+<div class="modal-backdrop" id="alumniModal">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h3 style="font-size: 18px; font-weight: 700;">Register New Alumni Profile</h3>
+            <button class="modal-close" type="button">&times;</button>
+        </div>
+        <form id="alumniForm">
+            <div class="form-group">
+                <label class="form-label" for="alumName">Full Name *</label>
+                <input type="text" id="alumName" class="form-control" placeholder="Dr. Jane Smith" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="alumEmail">Institutional / Personal Email *</label>
+                <input type="email" id="alumEmail" class="form-control" placeholder="jane.smith@alum.edu" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="alumBatch">Graduation Batch / Class Year *</label>
+                <input type="text" id="alumBatch" class="form-control" placeholder="Class of 2016" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="alumContact">Contact Number</label>
+                <input type="tel" id="alumContact" class="form-control" placeholder="+1-555-0199">
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Create Alumni Profile</button>
+        </form>
+    </div>
+</div>
+
+<script th:src="@{/js/portal.js}"></script>
+</body>
+</html>

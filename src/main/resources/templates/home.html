@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlumniConnect | Home</title>
+    <meta name="description" content="AlumniConnect brings alumni, donors, and institutions together through engagement, mentorship, and giving opportunities.">
+    <link rel="stylesheet" th:href="@{/css/portal.css}">
+</head>
+<body class="theme-light home-page">
+    <div class="home-shell">
+        <header class="home-header">
+            <div class="logo-block" aria-label="AlumniConnect home logo">
+                <span class="logo-mark">A</span>
+                <span class="logo-text">AlumniConnect</span>
+            </div>
+
+            <nav class="home-nav" aria-label="Main navigation">
+                <a href="#about">About</a>
+                <a href="#community">Community</a>
+                <a href="#contact">Contact</a>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/login" class="sign-in-link">Login</a>
+                <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">☀️</button>
+            </nav>
+        </header>
+
+        <main>
+            <section class="home-hero">
+                <div class="hero-copy">
+                    <div class="eyebrow">Reconnect • Grow • Give</div>
+                    <h1>Build stronger alumni communities.</h1>
+                    <p>
+                        AlumniConnect is a modern platform that helps institutions, graduates, and supporters stay connected,
+                        celebrate achievements, and drive meaningful opportunities for growth and giving.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="/dashboard">Explore Portal</a>
+                        <a class="btn btn-outline" href="#about">Learn More</a>
+                    </div>
+
+                    <ul class="hero-metrics">
+                        <li>
+                            <strong>5K+</strong>
+                            <span>Connected alumni</span>
+                        </li>
+                        <li>
+                            <strong>120+</strong>
+                            <span>Active campaigns</span>
+                        </li>
+                        <li>
+                            <strong>$2.4M</strong>
+                            <span>Raised for growth</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="hero-card">
+                    <div class="hero-visual">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="Alumni community gathering" />
+                    </div>
+                    <div class="highlight-card">
+                        <h3>Community Impact</h3>
+                        <div class="big-number">82%</div>
+                        <p>of alumni engagement initiatives are now tracked and managed in one place.</p>
+                    </div>
+
+                    <ul class="hero-mini-list">
+                        <li><span class="dot"></span>Mentorship &amp; career support</li>
+                        <li><span class="dot"></span>Donation and fundraising tracking</li>
+                        <li><span class="dot"></span>Event and engagement coordination</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="currency-section">
+                <div class="currency-panel">
+                    <div class="panel-header">
+                        <span>Donation Currency</span>
+                        <select id="currencySelect" aria-label="Select currency">
+                            <option value="USD">USD - US Dollar</option>
+                            <option value="EUR">EUR - Euro</option>
+                            <option value="GBP">GBP - British Pound</option>
+                            <option value="INR">INR - Indian Rupee</option>
+                            <option value="JPY">JPY - Japanese Yen</option>
+                            <option value="AED">AED - UAE Dirham</option>
+                            <option value="AUD">AUD - Australian Dollar</option>
+                            <option value="CAD">CAD - Canadian Dollar</option>
+                            <option value="SGD">SGD - Singapore Dollar</option>
+                            <option value="CNY">CNY - Chinese Yuan</option>
+                        </select>
+                    </div>
+                    <div class="currency-display">
+                        <span class="currency-symbol" id="currencySymbol">$</span>
+                        <span id="currencyAmount">2,500.00</span>
+                    </div>
+                    <div class="currency-grid">
+                        <div><strong>USD</strong><span>12,800</span></div>
+                        <div><strong>INR</strong><span>10.8L</span></div>
+                        <div><strong>GBP</strong><span>9,600</span></div>
+                        <div><strong>AED</strong><span>46,000</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-section" id="about">
+                <h2 class="section-header">About AlumniConnect</h2>
+                <p>
+                    AlumniConnect is a centralized alumni engagement and institutional development platform designed to
+                    strengthen the relationship between graduates and their alma mater. It brings together alumni records,
+                    campaign management, donation tracking, and financial visibility in a single, easy-to-use portal.
+                </p>
+
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="about-icon">🎓</div>
+                        <h3>Alumni Network</h3>
+                        <p>Keep alumni connected through profiles, milestones, batches, and recognition programs that celebrate long-term impact.</p>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="about-icon">🤝</div>
+                        <h3>Community Engagement</h3>
+                        <p>Support mentoring, event participation, and institutional collaboration through a shared digital experience.</p>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="about-icon">💰</div>
+                        <h3>Fundraising &amp; Giving</h3>
+                        <p>Track donations, campaign goals, and financial reports with a clear, transparent contribution ecosystem.</p>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="about-icon">📊</div>
+                        <h3>Smart Insights</h3>
+                        <p>Monitor contributions, budgets, and engagement trends to make informed decisions for the institution.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="community-section" id="community">
+                <h2 class="section-header">Community</h2>
+                <div class="community-grid">
+                    <article class="community-card">
+                        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=900&q=80" alt="Alumni mentors sharing ideas" />
+                        <div>
+                            <h3>Mentor Circles</h3>
+                            <p>Connect senior graduates with students through guided discussion, career advice, and meaningful networking.</p>
+                        </div>
+                    </article>
+
+                    <article class="community-card">
+                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80" alt="Community celebration" />
+                        <div>
+                            <h3>Reunion Events</h3>
+                            <p>Celebrate milestones, chapter reunions, and campus memories with a vibrant network across generations.</p>
+                        </div>
+                    </article>
+
+                    <article class="community-card">
+                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=900&q=80" alt="Career networking session" />
+                        <div>
+                            <h3>Career Growth</h3>
+                            <p>Open doors for internship opportunities, hiring referrals, and collaboration between alumni and students.</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="contact-section" id="contact">
+                <h2 class="section-header">Contact</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h3>Let’s stay connected</h3>
+                        <p>Email: hello@alumniconnect.org</p>
+                        <p>Phone: +1 (415) 555-2037</p>
+                        <p>Address: 210 Guild Avenue, Silicon Valley, CA</p>
+                    </div>
+
+                    <form class="contact-form" action="#" method="post">
+                        <div class="form-row">
+                            <label for="name">Name</label>
+                            <input id="name" type="text" placeholder="Your full name" />
+                        </div>
+                        <div class="form-row">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" placeholder="you@example.com" />
+                        </div>
+                        <div class="form-row">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="4" placeholder="Tell us how we can help."></textarea>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Send Message</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script th:src="@{/js/portal.js}"></script>
+</body>
+</html>

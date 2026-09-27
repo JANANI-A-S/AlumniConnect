@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlumniConnect | Login</title>
+    <link rel="stylesheet" th:href="@{/css/portal.css}">
+</head>
+<body class="theme-light signin-page">
+    <div class="signin-shell">
+        <div class="signin-card">
+            <div class="signin-brand">
+                <span class="logo-mark">A</span>
+                <div>
+                    <h1>AlumniConnect</h1>
+                    <p>Welcome back</p>
+                </div>
+            </div>
+
+            <form method="post" th:action="@{/login}">
+                <div class="form-row">
+                    <label for="username">Username</label>
+                    <input id="username" name="username" type="text" placeholder="admin" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" placeholder="••••••••" required>
+                </div>
+
+                <button class="btn btn-primary btn-full" type="submit">Login</button>
+            </form>
+
+            <div class="signin-help">
+                <span>Demo accounts:</span>
+                <small>admin / admin123</small>
+                <small>accountant / accountant123</small>
+                <small>alumni_user / alumni123</small>
+            </div>
+
+            <div class="signin-footer">
+                <a href="/">← Back to home</a>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/portal.js}"></script>
+</body>
+</html>
