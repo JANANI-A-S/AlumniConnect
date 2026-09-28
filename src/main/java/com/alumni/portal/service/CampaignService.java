@@ -30,27 +30,25 @@ public class CampaignService {
             throw new BadRequestException("Campaign with name '" + dto.getName() + "' already exists.");
         }
 
-        Campaign campaign = Campaign.builder()
-                .name(dto.getName())
-                .description(dto.getDescription())
-                .targetAmount(dto.getTargetAmount())
-                .collectedAmount(BigDecimal.ZERO)
-                .startDate(dto.getStartDate())
-                .endDate(dto.getEndDate())
-                .status(dto.getStatus() != null ? dto.getStatus() : "ACTIVE")
-                .build();
+        Campaign campaign = new Campaign();
+        campaign.setName(dto.getName());
+        campaign.setDescription(dto.getDescription());
+        campaign.setTargetAmount(dto.getTargetAmount());
+        campaign.setCollectedAmount(BigDecimal.ZERO);
+        campaign.setStartDate(dto.getStartDate());
+        campaign.setEndDate(dto.getEndDate());
+        campaign.setStatus(dto.getStatus() != null ? dto.getStatus() : "ACTIVE");
 
         Campaign saved = campaignRepository.save(campaign);
 
         // Auto-create initial budget tracking record for analytic accounting
-        Budget budget = Budget.builder()
-                .campaign(saved)
-                .targetAmount(saved.getTargetAmount())
-                .actualAmount(BigDecimal.ZERO)
-                .allocatedExpenseBudget(saved.getTargetAmount().multiply(new BigDecimal("0.15"))) // 15% estimated budget for marketing/gala
-                .actualExpenses(BigDecimal.ZERO)
-                .notes("Auto-initialized budget for campaign: " + saved.getName())
-                .build();
+        Budget budget = new Budget();
+        budget.setCampaign(saved);
+        budget.setTargetAmount(saved.getTargetAmount());
+        budget.setActualAmount(BigDecimal.ZERO);
+        budget.setAllocatedExpenseBudget(saved.getTargetAmount().multiply(new BigDecimal("0.15"))); // 15% estimated budget for marketing/gala
+        budget.setActualExpenses(BigDecimal.ZERO);
+        budget.setNotes("Auto-initialized budget for campaign: " + saved.getName());
         budgetRepository.save(budget);
 
         return toDto(saved);

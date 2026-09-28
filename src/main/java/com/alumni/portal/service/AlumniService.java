@@ -27,14 +27,13 @@ public class AlumniService {
             throw new BadRequestException("Alumni with email " + dto.getEmail() + " is already registered.");
         }
 
-        Alumni alumni = Alumni.builder()
-                .name(dto.getName())
-                .email(dto.getEmail())
-                .batch(dto.getBatch())
-                .contact(dto.getContact())
-                .donationTotal(BigDecimal.ZERO)
-                .rankingTier(RankingTier.BRONZE)
-                .build();
+        Alumni alumni = new Alumni();
+        alumni.setName(dto.getName());
+        alumni.setEmail(dto.getEmail());
+        alumni.setBatch(dto.getBatch());
+        alumni.setContact(dto.getContact());
+        alumni.setDonationTotal(BigDecimal.ZERO);
+        alumni.setRankingTier(RankingTier.BRONZE);
 
         Alumni saved = alumniRepository.save(alumni);
         return toDto(saved);

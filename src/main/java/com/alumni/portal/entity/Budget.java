@@ -12,7 +12,6 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Budget {
 
     @Id
@@ -28,15 +27,12 @@ public class Budget {
     @Column(name = "target_amount", nullable = false)
     private BigDecimal targetAmount;
 
-    @Builder.Default
     @Column(name = "actual_amount", nullable = false)
     private BigDecimal actualAmount = BigDecimal.ZERO;
 
-    @Builder.Default
     @Column(name = "allocated_expense_budget", nullable = false)
     private BigDecimal allocatedExpenseBudget = BigDecimal.ZERO;
 
-    @Builder.Default
     @Column(name = "actual_expenses", nullable = false)
     private BigDecimal actualExpenses = BigDecimal.ZERO;
 

@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class MentorshipSession {
 
     @Id
@@ -48,14 +47,12 @@ public class MentorshipSession {
     private String topic;
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
     @Column(nullable = false)
     private SessionStatus status = SessionStatus.SCHEDULED;
 
     @Column(columnDefinition = "TEXT")
     private String notes;
 
-    @Builder.Default
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 }

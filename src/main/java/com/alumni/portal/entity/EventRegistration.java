@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class EventRegistration {
 
     @Id
@@ -31,11 +30,9 @@ public class EventRegistration {
     @JoinColumn(name = "alumni_id", nullable = false)
     private Alumni alumni;
 
-    @Builder.Default
     @Column(name = "registered_at", nullable = false)
     private LocalDateTime registeredAt = LocalDateTime.now();
 
-    @Builder.Default
     @Column(name = "attendance_status", nullable = false)
     private String attendanceStatus = "REGISTERED";
 

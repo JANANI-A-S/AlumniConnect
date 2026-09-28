@@ -40,192 +40,266 @@ public class DataLoader implements CommandLineRunner {
 
         log.info("Initializing Master Data, CoA, Journals, Campaigns, and Seed Records...");
 
-        // 1. Chart of Accounts
-        ChartOfAccounts bank = accountRepository.save(ChartOfAccounts.builder()
-                .code("1010").name("Endowment Cash & Bank").type(AccountType.ASSET)
-                .balance(new BigDecimal("87500.00")).description("Primary endowment checking and cash reserve account").build());
+        ChartOfAccounts bank = new ChartOfAccounts();
+        bank.setCode("1010");
+        bank.setName("Endowment Cash & Bank");
+        bank.setType(AccountType.ASSET);
+        bank.setBalance(new BigDecimal("87500.00"));
+        bank.setDescription("Primary endowment checking and cash reserve account");
+        bank = accountRepository.save(bank);
 
-        ChartOfAccounts investments = accountRepository.save(ChartOfAccounts.builder()
-                .code("1020").name("Endowment Term Investments").type(AccountType.ASSET)
-                .balance(new BigDecimal("250000.00")).description("Fixed institutional long-term endowment investments").build());
+        ChartOfAccounts investments = new ChartOfAccounts();
+        investments.setCode("1020");
+        investments.setName("Endowment Term Investments");
+        investments.setType(AccountType.ASSET);
+        investments.setBalance(new BigDecimal("250000.00"));
+        investments.setDescription("Fixed institutional long-term endowment investments");
+        investments = accountRepository.save(investments);
 
-        ChartOfAccounts payables = accountRepository.save(ChartOfAccounts.builder()
-                .code("2010").name("Vendor Payables").type(AccountType.LIABILITY)
-                .balance(new BigDecimal("12000.00")).description("Liabilities owed to event vendors and suppliers").build());
+        ChartOfAccounts payables = new ChartOfAccounts();
+        payables.setCode("2010");
+        payables.setName("Vendor Payables");
+        payables.setType(AccountType.LIABILITY);
+        payables.setBalance(new BigDecimal("12000.00"));
+        payables.setDescription("Liabilities owed to event vendors and suppliers");
+        payables = accountRepository.save(payables);
 
-        ChartOfAccounts donationsRevenue = accountRepository.save(ChartOfAccounts.builder()
-                .code("4010").name("Alumni Donations Revenue").type(AccountType.INCOME)
-                .balance(new BigDecimal("87500.00")).description("Cumulative donations received for university endowments").build());
+        ChartOfAccounts donationsRevenue = new ChartOfAccounts();
+        donationsRevenue.setCode("4010");
+        donationsRevenue.setName("Alumni Donations Revenue");
+        donationsRevenue.setType(AccountType.INCOME);
+        donationsRevenue.setBalance(new BigDecimal("87500.00"));
+        donationsRevenue.setDescription("Cumulative donations received for university endowments");
+        donationsRevenue = accountRepository.save(donationsRevenue);
 
-        accountRepository.save(ChartOfAccounts.builder()
-                .code("4020").name("Alumni Gala Event Receipts").type(AccountType.INCOME)
-                .balance(new BigDecimal("15000.00")).description("Ticket and sponsorship receipts from institutional galas").build());
+        ChartOfAccounts galaReceipts = new ChartOfAccounts();
+        galaReceipts.setCode("4020");
+        galaReceipts.setName("Alumni Gala Event Receipts");
+        galaReceipts.setType(AccountType.INCOME);
+        galaReceipts.setBalance(new BigDecimal("15000.00"));
+        galaReceipts.setDescription("Ticket and sponsorship receipts from institutional galas");
+        accountRepository.save(galaReceipts);
 
-        ChartOfAccounts eventExpenses = accountRepository.save(ChartOfAccounts.builder()
-                .code("5010").name("Alumni Event & Campaign Expenses").type(AccountType.EXPENSE)
-                .balance(new BigDecimal("12000.00")).description("Operational expenses for alumni galas and campaign rallies").build());
+        ChartOfAccounts eventExpenses = new ChartOfAccounts();
+        eventExpenses.setCode("5010");
+        eventExpenses.setName("Alumni Event & Campaign Expenses");
+        eventExpenses.setType(AccountType.EXPENSE);
+        eventExpenses.setBalance(new BigDecimal("12000.00"));
+        eventExpenses.setDescription("Operational expenses for alumni galas and campaign rallies");
+        eventExpenses = accountRepository.save(eventExpenses);
 
-        accountRepository.save(ChartOfAccounts.builder()
-                .code("5020").name("Marketing & Outreach Expenses").type(AccountType.EXPENSE)
-                .balance(new BigDecimal("4500.00")).description("Campaign outreach, digital mailers, and print publications").build());
+        ChartOfAccounts outreachExpenses = new ChartOfAccounts();
+        outreachExpenses.setCode("5020");
+        outreachExpenses.setName("Marketing & Outreach Expenses");
+        outreachExpenses.setType(AccountType.EXPENSE);
+        outreachExpenses.setBalance(new BigDecimal("4500.00"));
+        outreachExpenses.setDescription("Campaign outreach, digital mailers, and print publications");
+        accountRepository.save(outreachExpenses);
 
-        // 2. Journals
-        Journal donationJournal = journalRepository.save(Journal.builder()
-                .code("JRN-DONATION").name("Grants & Donations Journal").type(JournalType.GRANTS_DONATIONS)
-                .description("Journal for recording incoming alumni gifts and endowment donations").build());
+        Journal donationJournal = new Journal();
+        donationJournal.setCode("JRN-DONATION");
+        donationJournal.setName("Grants & Donations Journal");
+        donationJournal.setType(JournalType.GRANTS_DONATIONS);
+        donationJournal.setDescription("Journal for recording incoming alumni gifts and endowment donations");
+        donationJournal = journalRepository.save(donationJournal);
 
-        Journal purchaseJournal = journalRepository.save(Journal.builder()
-                .code("JRN-PURCHASE").name("Purchase Journal").type(JournalType.PURCHASE)
-                .description("Journal for recording vendor bills, procurement, and accounts payable").build());
+        Journal purchaseJournal = new Journal();
+        purchaseJournal.setCode("JRN-PURCHASE");
+        purchaseJournal.setName("Purchase Journal");
+        purchaseJournal.setType(JournalType.PURCHASE);
+        purchaseJournal.setDescription("Journal for recording vendor bills, procurement, and accounts payable");
+        purchaseJournal = journalRepository.save(purchaseJournal);
 
-        journalRepository.save(Journal.builder()
-                .code("JRN-BANK").name("Bank & Cash Journal").type(JournalType.BANK_CASH)
-                .description("Journal for university cash, wire disbursements, and bank reconciliation").build());
+        Journal bankJournal = new Journal();
+        bankJournal.setCode("JRN-BANK");
+        bankJournal.setName("Bank & Cash Journal");
+        bankJournal.setType(JournalType.BANK_CASH);
+        bankJournal.setDescription("Journal for university cash, wire disbursements, and bank reconciliation");
+        journalRepository.save(bankJournal);
 
-        // 3. Contacts
-        Contact donorContact = contactRepository.save(Contact.builder()
-                .name("Dr. Eleanor Vance").email("eleanor.vance@mit-alum.edu").phone("+1-617-555-0199")
-                .organization("Vance Tech Ventures").contactType(ContactType.DONOR).build());
+        Contact donorContact = new Contact();
+        donorContact.setName("Dr. Eleanor Vance");
+        donorContact.setEmail("eleanor.vance@mit-alum.edu");
+        donorContact.setPhone("+1-617-555-0199");
+        donorContact.setOrganization("Vance Tech Ventures");
+        donorContact.setContactType(ContactType.DONOR);
+        donorContact = contactRepository.save(donorContact);
 
-        Contact vendorContact = contactRepository.save(Contact.builder()
-                .name("Gala Gourmet Catering Co.").email("contact@galagourmet.com").phone("+1-212-555-0144")
-                .organization("Gourmet Hospitality LLC").contactType(ContactType.VENDOR).build());
+        Contact vendorContact = new Contact();
+        vendorContact.setName("Gala Gourmet Catering Co.");
+        vendorContact.setEmail("contact@galagourmet.com");
+        vendorContact.setPhone("+1-212-555-0144");
+        vendorContact.setOrganization("Gourmet Hospitality LLC");
+        vendorContact.setContactType(ContactType.VENDOR);
+        vendorContact = contactRepository.save(vendorContact);
 
-        contactRepository.save(Contact.builder()
-                .name("Horizon Media Agency").email("campaigns@horizonmedia.org").phone("+1-415-555-0182")
-                .organization("Horizon Global Communications").contactType(ContactType.AGENCY).build());
+        Contact agencyContact = new Contact();
+        agencyContact.setName("Horizon Media Agency");
+        agencyContact.setEmail("campaigns@horizonmedia.org");
+        agencyContact.setPhone("+1-415-555-0182");
+        agencyContact.setOrganization("Horizon Global Communications");
+        agencyContact.setContactType(ContactType.AGENCY);
+        contactRepository.save(agencyContact);
 
-        // 4. Products
-        Product prodEndowment = productRepository.save(Product.builder()
-                .name("Endowment Contribution").productType(ProductType.ENDOWMENT_CONTRIBUTION)
-                .price(new BigDecimal("5000.00")).description("Direct institutional contribution to university capital endowment").build());
+        Product prodEndowment = new Product();
+        prodEndowment.setName("Endowment Contribution");
+        prodEndowment.setProductType(ProductType.ENDOWMENT_CONTRIBUTION);
+        prodEndowment.setPrice(new BigDecimal("5000.00"));
+        prodEndowment.setDescription("Direct institutional contribution to university capital endowment");
+        prodEndowment = productRepository.save(prodEndowment);
 
-        productRepository.save(Product.builder()
-                .name("Alumni Gala Ticket").productType(ProductType.GALA_TICKET)
-                .price(new BigDecimal("250.00")).description("Ticket entry for annual alumni black-tie benefit dinner and gala").build());
+        Product galaTicket = new Product();
+        galaTicket.setName("Alumni Gala Ticket");
+        galaTicket.setProductType(ProductType.GALA_TICKET);
+        galaTicket.setPrice(new BigDecimal("250.00"));
+        galaTicket.setDescription("Ticket entry for annual alumni black-tie benefit dinner and gala");
+        productRepository.save(galaTicket);
 
-        productRepository.save(Product.builder()
-                .name("Campus Mentorship Sponsorship").productType(ProductType.MENTORSHIP_SPONSORSHIP)
-                .price(new BigDecimal("1500.00")).description("Semester-long sponsorship funding student-alumni mentorship programs").build());
+        Product mentorshipSponsorship = new Product();
+        mentorshipSponsorship.setName("Campus Mentorship Sponsorship");
+        mentorshipSponsorship.setProductType(ProductType.MENTORSHIP_SPONSORSHIP);
+        mentorshipSponsorship.setPrice(new BigDecimal("1500.00"));
+        mentorshipSponsorship.setDescription("Semester-long sponsorship funding student-alumni mentorship programs");
+        productRepository.save(mentorshipSponsorship);
 
-        // 5. Campaigns
-        Campaign campaign1 = campaignRepository.save(Campaign.builder()
-                .name("2026 Library Science Expansion Campaign")
-                .description("Funding state-of-the-art digital archives, quiet study chambers, and AI research labs")
-                .targetAmount(new BigDecimal("250000.00"))
-                .collectedAmount(new BigDecimal("55000.00"))
-                .startDate(LocalDate.of(2026, 1, 1))
-                .endDate(LocalDate.of(2026, 12, 31))
-                .status("ACTIVE")
-                .build());
+        Campaign campaign1 = new Campaign();
+        campaign1.setName("2026 Library Science Expansion Campaign");
+        campaign1.setDescription("Funding state-of-the-art digital archives, quiet study chambers, and AI research labs");
+        campaign1.setTargetAmount(new BigDecimal("250000.00"));
+        campaign1.setCollectedAmount(new BigDecimal("55000.00"));
+        campaign1.setStartDate(LocalDate.of(2026, 1, 1));
+        campaign1.setEndDate(LocalDate.of(2026, 12, 31));
+        campaign1.setStatus("ACTIVE");
+        campaign1 = campaignRepository.save(campaign1);
 
-        Campaign campaign2 = campaignRepository.save(Campaign.builder()
-                .name("STEM Research & Innovation Endowment")
-                .description("Endowed professorships and advanced lab equipment for student discovery")
-                .targetAmount(new BigDecimal("500000.00"))
-                .collectedAmount(new BigDecimal("32500.00"))
-                .startDate(LocalDate.of(2026, 2, 15))
-                .endDate(LocalDate.of(2027, 2, 15))
-                .status("ACTIVE")
-                .build());
+        Campaign campaign2 = new Campaign();
+        campaign2.setName("STEM Research & Innovation Endowment");
+        campaign2.setDescription("Endowed professorships and advanced lab equipment for student discovery");
+        campaign2.setTargetAmount(new BigDecimal("500000.00"));
+        campaign2.setCollectedAmount(new BigDecimal("32500.00"));
+        campaign2.setStartDate(LocalDate.of(2026, 2, 15));
+        campaign2.setEndDate(LocalDate.of(2027, 2, 15));
+        campaign2.setStatus("ACTIVE");
+        campaign2 = campaignRepository.save(campaign2);
 
-        // 6. Alumni
-        Alumni alumni1 = alumniRepository.save(Alumni.builder()
-                .name("Dr. Eleanor Vance").email("eleanor.vance@mit-alum.edu").batch("Class of 2010")
-                .contact("+1-617-555-0199").donationTotal(new BigDecimal("55000.00")).rankingTier(RankingTier.PLATINUM).build());
+        Alumni alumni1 = new Alumni();
+        alumni1.setName("Dr. Eleanor Vance");
+        alumni1.setEmail("eleanor.vance@mit-alum.edu");
+        alumni1.setBatch("Class of 2010");
+        alumni1.setContact("+1-617-555-0199");
+        alumni1.setDonationTotal(new BigDecimal("55000.00"));
+        alumni1.setRankingTier(RankingTier.PLATINUM);
+        alumni1 = alumniRepository.save(alumni1);
 
-        Alumni alumni2 = alumniRepository.save(Alumni.builder()
-                .name("Marcus Aurelius Sterling").email("marcus.sterling@alum.org").batch("Class of 2014")
-                .contact("+1-312-555-0177").donationTotal(new BigDecimal("25000.00")).rankingTier(RankingTier.GOLD).build());
+        Alumni alumni2 = new Alumni();
+        alumni2.setName("Marcus Aurelius Sterling");
+        alumni2.setEmail("marcus.sterling@alum.org");
+        alumni2.setBatch("Class of 2014");
+        alumni2.setContact("+1-312-555-0177");
+        alumni2.setDonationTotal(new BigDecimal("25000.00"));
+        alumni2.setRankingTier(RankingTier.GOLD);
+        alumni2 = alumniRepository.save(alumni2);
 
-        alumniRepository.save(Alumni.builder()
-                .name("Sarah Jenkins").email("sarah.jenkins@alum.org").batch("Class of 2018")
-                .contact("+1-206-555-0122").donationTotal(new BigDecimal("7500.00")).rankingTier(RankingTier.SILVER).build());
+        Alumni alumni3 = new Alumni();
+        alumni3.setName("Sarah Jenkins");
+        alumni3.setEmail("sarah.jenkins@alum.org");
+        alumni3.setBatch("Class of 2018");
+        alumni3.setContact("+1-206-555-0122");
+        alumni3.setDonationTotal(new BigDecimal("7500.00"));
+        alumni3.setRankingTier(RankingTier.SILVER);
+        alumniRepository.save(alumni3);
 
-        alumniRepository.save(Alumni.builder()
-                .name("David Zhao").email("david.zhao@alum.org").batch("Class of 2021")
-                .contact("+1-408-555-0133").donationTotal(new BigDecimal("1200.00")).rankingTier(RankingTier.BRONZE).build());
+        Alumni alumni4 = new Alumni();
+        alumni4.setName("David Zhao");
+        alumni4.setEmail("david.zhao@alum.org");
+        alumni4.setBatch("Class of 2021");
+        alumni4.setContact("+1-408-555-0133");
+        alumni4.setDonationTotal(new BigDecimal("1200.00"));
+        alumni4.setRankingTier(RankingTier.BRONZE);
+        alumniRepository.save(alumni4);
 
-        alumniRepository.save(Alumni.builder()
-                .name("Priya Patel").email("priya.patel@alum.org").batch("Class of 2023")
-                .contact("+1-646-555-0144").donationTotal(BigDecimal.ZERO).rankingTier(RankingTier.BRONZE).build());
+        Alumni alumni5 = new Alumni();
+        alumni5.setName("Priya Patel");
+        alumni5.setEmail("priya.patel@alum.org");
+        alumni5.setBatch("Class of 2023");
+        alumni5.setContact("+1-646-555-0144");
+        alumni5.setDonationTotal(BigDecimal.ZERO);
+        alumni5.setRankingTier(RankingTier.BRONZE);
+        alumniRepository.save(alumni5);
 
-        // 7. Budgets
-        budgetRepository.save(Budget.builder()
-                .campaign(campaign1)
-                .targetAmount(new BigDecimal("250000.00"))
-                .actualAmount(new BigDecimal("55000.00"))
-                .allocatedExpenseBudget(new BigDecimal("37500.00"))
-                .actualExpenses(new BigDecimal("12000.00"))
-                .notes("2026 Library Science Expansion Budget with 15% marketing cap")
-                .build());
+        Budget budget1 = new Budget();
+        budget1.setCampaign(campaign1);
+        budget1.setTargetAmount(new BigDecimal("250000.00"));
+        budget1.setActualAmount(new BigDecimal("55000.00"));
+        budget1.setAllocatedExpenseBudget(new BigDecimal("37500.00"));
+        budget1.setActualExpenses(new BigDecimal("12000.00"));
+        budget1.setNotes("2026 Library Science Expansion Budget with 15% marketing cap");
+        budgetRepository.save(budget1);
 
-        budgetRepository.save(Budget.builder()
-                .campaign(campaign2)
-                .targetAmount(new BigDecimal("500000.00"))
-                .actualAmount(new BigDecimal("32500.00"))
-                .allocatedExpenseBudget(new BigDecimal("75000.00"))
-                .actualExpenses(BigDecimal.ZERO)
-                .notes("STEM Endowment initial phase")
-                .build());
+        Budget budget2 = new Budget();
+        budget2.setCampaign(campaign2);
+        budget2.setTargetAmount(new BigDecimal("500000.00"));
+        budget2.setActualAmount(new BigDecimal("32500.00"));
+        budget2.setAllocatedExpenseBudget(new BigDecimal("75000.00"));
+        budget2.setActualExpenses(BigDecimal.ZERO);
+        budget2.setNotes("STEM Endowment initial phase");
+        budgetRepository.save(budget2);
 
-        // 8. Initial Journal Entry & Donation
-        JournalEntry entry1 = journalEntryRepository.save(JournalEntry.builder()
-                .journal(donationJournal)
-                .debitAccount(bank)
-                .creditAccount(donationsRevenue)
-                .amount(new BigDecimal("55000.00"))
-                .entryDate(LocalDateTime.now())
-                .description("Foundational endowment donation from Dr. Eleanor Vance")
-                .referenceId("REC-2026-INIT01")
-                .campaign(campaign1)
-                .build());
+        JournalEntry entry1 = new JournalEntry();
+        entry1.setJournal(donationJournal);
+        entry1.setDebitAccount(bank);
+        entry1.setCreditAccount(donationsRevenue);
+        entry1.setAmount(new BigDecimal("55000.00"));
+        entry1.setEntryDate(LocalDateTime.now());
+        entry1.setDescription("Foundational endowment donation from Dr. Eleanor Vance");
+        entry1.setReferenceId("REC-2026-INIT01");
+        entry1.setCampaign(campaign1);
+        entry1 = journalEntryRepository.save(entry1);
 
-        donationRepository.save(Donation.builder()
-                .alumni(alumni1)
-                .campaign(campaign1)
-                .product(prodEndowment)
-                .amount(new BigDecimal("55000.00"))
-                .donationDate(LocalDateTime.now())
-                .paymentMethod(PaymentMethod.BANK_TRANSFER)
-                .receiptNumber("REC-2026-INIT01")
-                .notes("Pledge fulfilled for Library Science Expansion")
-                .journalEntry(entry1)
-                .build());
+        Donation donation = new Donation();
+        donation.setAlumni(alumni1);
+        donation.setCampaign(campaign1);
+        donation.setProduct(prodEndowment);
+        donation.setAmount(new BigDecimal("55000.00"));
+        donation.setDonationDate(LocalDateTime.now());
+        donation.setPaymentMethod(PaymentMethod.BANK_TRANSFER);
+        donation.setReceiptNumber("REC-2026-INIT01");
+        donation.setNotes("Pledge fulfilled for Library Science Expansion");
+        donation.setJournalEntry(entry1);
+        donationRepository.save(donation);
 
-        // 9. PO and Vendor Bill
-        PurchaseOrder po = poRepository.save(PurchaseOrder.builder()
-                .poNumber("PO-2026-001")
-                .vendor(vendorContact)
-                .campaign(campaign1)
-                .amount(new BigDecimal("12000.00"))
-                .orderDate(LocalDate.now())
-                .status(POStatus.BILLED)
-                .description("Catering & banquet service for 2026 Library Science Launch Gala")
-                .build());
+        PurchaseOrder po = new PurchaseOrder();
+        po.setPoNumber("PO-2026-001");
+        po.setVendor(vendorContact);
+        po.setCampaign(campaign1);
+        po.setAmount(new BigDecimal("12000.00"));
+        po.setOrderDate(LocalDate.now());
+        po.setStatus(POStatus.BILLED);
+        po.setDescription("Catering & banquet service for 2026 Library Science Launch Gala");
+        po = poRepository.save(po);
 
-        billRepository.save(VendorBill.builder()
-                .billNumber("BILL-2026-INIT01")
-                .purchaseOrder(po)
-                .vendor(vendorContact)
-                .campaign(campaign1)
-                .amount(new BigDecimal("12000.00"))
-                .billDate(LocalDate.now())
-                .dueDate(LocalDate.now().plusDays(30))
-                .status(BillStatus.UNPAID)
-                .notes("Net 30 catering invoice")
-                .build());
+        VendorBill bill = new VendorBill();
+        bill.setBillNumber("BILL-2026-INIT01");
+        bill.setPurchaseOrder(po);
+        bill.setVendor(vendorContact);
+        bill.setCampaign(campaign1);
+        bill.setAmount(new BigDecimal("12000.00"));
+        bill.setBillDate(LocalDate.now());
+        bill.setDueDate(LocalDate.now().plusDays(30));
+        bill.setStatus(BillStatus.UNPAID);
+        bill.setNotes("Net 30 catering invoice");
+        billRepository.save(bill);
 
-        journalEntryRepository.save(JournalEntry.builder()
-                .journal(purchaseJournal)
-                .debitAccount(eventExpenses)
-                .creditAccount(payables)
-                .amount(new BigDecimal("12000.00"))
-                .entryDate(LocalDateTime.now())
-                .description("Gala catering and venue setup invoice from Gala Gourmet Catering")
-                .referenceId("BILL-2026-INIT01")
-                .campaign(campaign1)
-                .build());
+        JournalEntry purchaseEntry = new JournalEntry();
+        purchaseEntry.setJournal(purchaseJournal);
+        purchaseEntry.setDebitAccount(eventExpenses);
+        purchaseEntry.setCreditAccount(payables);
+        purchaseEntry.setAmount(new BigDecimal("12000.00"));
+        purchaseEntry.setEntryDate(LocalDateTime.now());
+        purchaseEntry.setDescription("Gala catering and venue setup invoice from Gala Gourmet Catering");
+        purchaseEntry.setReferenceId("BILL-2026-INIT01");
+        purchaseEntry.setCampaign(campaign1);
+        journalEntryRepository.save(purchaseEntry);
 
         log.info("Master data initialization completed successfully.");
     }

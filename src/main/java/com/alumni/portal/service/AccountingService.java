@@ -51,13 +51,12 @@ public class AccountingService {
         if (accountRepository.existsByCode(dto.getCode())) {
             throw new BadRequestException("Account code '" + dto.getCode() + "' already exists.");
         }
-        ChartOfAccounts account = ChartOfAccounts.builder()
-                .code(dto.getCode())
-                .name(dto.getName())
-                .type(dto.getType())
-                .balance(BigDecimal.ZERO)
-                .description(dto.getDescription())
-                .build();
+        ChartOfAccounts account = new ChartOfAccounts();
+        account.setCode(dto.getCode());
+        account.setName(dto.getName());
+        account.setType(dto.getType());
+        account.setBalance(BigDecimal.ZERO);
+        account.setDescription(dto.getDescription());
         return accountRepository.save(account);
     }
 
@@ -118,16 +117,15 @@ public class AccountingService {
         }
         accountRepository.save(creditAccount);
 
-        JournalEntry entry = JournalEntry.builder()
-                .journal(journal)
-                .debitAccount(debitAccount)
-                .creditAccount(creditAccount)
-                .amount(amount)
-                .entryDate(LocalDateTime.now())
-                .description(description)
-                .referenceId(referenceId)
-                .campaign(campaign)
-                .build();
+        JournalEntry entry = new JournalEntry();
+        entry.setJournal(journal);
+        entry.setDebitAccount(debitAccount);
+        entry.setCreditAccount(creditAccount);
+        entry.setAmount(amount);
+        entry.setEntryDate(LocalDateTime.now());
+        entry.setDescription(description);
+        entry.setReferenceId(referenceId);
+        entry.setCampaign(campaign);
 
         return entryRepository.save(entry);
     }

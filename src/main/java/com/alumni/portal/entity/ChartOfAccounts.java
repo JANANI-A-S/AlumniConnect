@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class ChartOfAccounts {
 
     @Id
@@ -34,7 +33,6 @@ public class ChartOfAccounts {
     @Column(nullable = false)
     private AccountType type;
 
-    @Builder.Default
     @Column(nullable = false)
     private BigDecimal balance = BigDecimal.ZERO;
 

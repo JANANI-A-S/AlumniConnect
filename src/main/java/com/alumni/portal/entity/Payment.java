@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Payment {
 
     @Id
@@ -36,19 +35,16 @@ public class Payment {
     @Column(nullable = false)
     private BigDecimal amount;
 
-    @Builder.Default
     @Column(name = "payment_date", nullable = false)
     private LocalDate paymentDate = LocalDate.now();
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
     @Column(name = "payment_method", nullable = false)
     private PaymentMethod paymentMethod = PaymentMethod.BANK_TRANSFER;
 
     @Column
     private String reference;
 
-    @Builder.Default
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 }

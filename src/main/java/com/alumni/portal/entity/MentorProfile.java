@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class MentorProfile {
 
     @Id
@@ -35,26 +34,21 @@ public class MentorProfile {
     @Column(nullable = false)
     private String expertise;
 
-    @Builder.Default
     @Column(name = "years_of_experience")
     private Integer yearsOfExperience = 5;
 
     @Column(name = "preferred_mentorship_areas")
     private String preferredMentorshipAreas;
 
-    @Builder.Default
     @Column(name = "availability_status", nullable = false)
     private String availabilityStatus = "AVAILABLE";
 
-    @Builder.Default
     @Column(name = "communication_method")
     private String communicationMethod = "Google Meet / Video Call";
 
-    @Builder.Default
     @Column(name = "active", nullable = false)
     private Boolean active = true;
 
-    @Builder.Default
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 }

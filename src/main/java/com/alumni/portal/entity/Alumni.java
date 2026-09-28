@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Alumni {
 
     @Id
@@ -55,24 +54,19 @@ public class Alumni {
     private String linkedInProfile;
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
     @Column(name = "alumni_status", nullable = false)
     private AlumniStatus alumniStatus = AlumniStatus.ACTIVE;
 
-    @Builder.Default
     @Column(name = "mentorship_available", nullable = false)
     private Boolean mentorshipAvailable = true;
 
-    @Builder.Default
     @Column(name = "donation_total", nullable = false)
     private BigDecimal donationTotal = BigDecimal.ZERO;
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
     @Column(name = "ranking_tier", nullable = false)
     private RankingTier rankingTier = RankingTier.BRONZE;
 
-    @Builder.Default
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 

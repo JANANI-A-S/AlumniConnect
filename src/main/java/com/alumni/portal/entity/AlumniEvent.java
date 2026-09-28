@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class AlumniEvent {
 
     @Id
@@ -47,32 +46,25 @@ public class AlumniEvent {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Builder.Default
     @Column(name = "expected_attendance")
     private Integer expectedAttendance = 100;
 
-    @Builder.Default
     @Column(name = "registered_count")
     private Integer registeredCount = 0;
 
-    @Builder.Default
     @Column(name = "event_budget", nullable = false)
     private BigDecimal eventBudget = BigDecimal.ZERO;
 
-    @Builder.Default
     @Column(name = "actual_expense", nullable = false)
     private BigDecimal actualExpense = BigDecimal.ZERO;
 
-    @Builder.Default
     @Column(name = "sponsorship_amount", nullable = false)
     private BigDecimal sponsorshipAmount = BigDecimal.ZERO;
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
     @Column(nullable = false)
     private EventStatus status = EventStatus.UPCOMING;
 
-    @Builder.Default
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 }

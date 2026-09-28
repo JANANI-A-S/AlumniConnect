@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class JournalEntry {
 
     @Id
@@ -39,7 +38,6 @@ public class JournalEntry {
     @Column(nullable = false)
     private BigDecimal amount;
 
-    @Builder.Default
     @Column(name = "entry_date", nullable = false)
     private LocalDateTime entryDate = LocalDateTime.now();
 

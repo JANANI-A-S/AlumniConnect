@@ -14,7 +14,6 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Campaign {
 
     @Id
@@ -32,7 +31,6 @@ public class Campaign {
     @Column(name = "target_amount", nullable = false)
     private BigDecimal targetAmount;
 
-    @Builder.Default
     @Column(name = "collected_amount", nullable = false)
     private BigDecimal collectedAmount = BigDecimal.ZERO;
 
@@ -42,7 +40,6 @@ public class Campaign {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    @Builder.Default
     @Column(nullable = false)
     private String status = "ACTIVE";
 }

@@ -46,15 +46,14 @@ public class ProcurementService {
         String poNumber = "PO-" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMM"))
                 + "-" + UUID.randomUUID().toString().substring(0, 5).toUpperCase();
 
-        PurchaseOrder po = PurchaseOrder.builder()
-                .poNumber(poNumber)
-                .vendor(vendor)
-                .campaign(campaign)
-                .amount(dto.getAmount())
-                .orderDate(LocalDate.now())
-                .status(POStatus.APPROVED)
-                .description(dto.getDescription())
-                .build();
+        PurchaseOrder po = new PurchaseOrder();
+        po.setPoNumber(poNumber);
+        po.setVendor(vendor);
+        po.setCampaign(campaign);
+        po.setAmount(dto.getAmount());
+        po.setOrderDate(LocalDate.now());
+        po.setStatus(POStatus.APPROVED);
+        po.setDescription(dto.getDescription());
 
         return poRepository.save(po);
     }
@@ -80,44 +79,49 @@ public class ProcurementService {
         String billNumber = "BILL-" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMM"))
                 + "-" + UUID.randomUUID().toString().substring(0, 5).toUpperCase();
 
-        VendorBill bill = VendorBill.builder()
-                .billNumber(billNumber)
-                .purchaseOrder(po)
-                .vendor(vendor)
-                .campaign(campaign)
-                .amount(dto.getAmount())
-                .billDate(LocalDate.now())
-                .dueDate(dto.getDueDate() != null ? dto.getDueDate() : LocalDate.now().plusDays(30))
-                .status(BillStatus.UNPAID)
-                .notes(dto.getNotes())
-                .build();
+        VendorBill bill = new VendorBill();
+        bill.setBillNumber(billNumber);
+        bill.setPurchaseOrder(po);
+        bill.setVendor(vendor);
+        bill.setCampaign(campaign);
+        bill.setAmount(dto.getAmount());
+        bill.setBillDate(LocalDate.now());
+        bill.setDueDate(dto.getDueDate() != null ? dto.getDueDate() : LocalDate.now().plusDays(30));
+        bill.setStatus(BillStatus.UNPAID);
+        bill.setNotes(dto.getNotes());
         VendorBill savedBill = billRepository.save(bill);
 
         // Ensure Chart of Accounts: Expense Account (5010) and Vendor Payables (2010)
         ChartOfAccounts expenseAccount = accountRepository.findByCode("5010")
-                .orElseGet(() -> accountRepository.save(ChartOfAccounts.builder()
-                        .code("5010")
-                        .name("Alumni Event & Campaign Expenses")
-                        .type(AccountType.EXPENSE)
-                        .description("Expenses incurred for gala events, marketing, and institutional campaigns")
-                        .build()));
+                .orElseGet(() -> {
+                    ChartOfAccounts account = new ChartOfAccounts();
+                    account.setCode("5010");
+                    account.setName("Alumni Event & Campaign Expenses");
+                    account.setType(AccountType.EXPENSE);
+                    account.setDescription("Expenses incurred for gala events, marketing, and institutional campaigns");
+                    return accountRepository.save(account);
+                });
 
         ChartOfAccounts payablesAccount = accountRepository.findByCode("2010")
-                .orElseGet(() -> accountRepository.save(ChartOfAccounts.builder()
-                        .code("2010")
-                        .name("Vendor Payables")
-                        .type(AccountType.LIABILITY)
-                        .description("Outstanding liabilities owed to vendors and marketing agencies")
-                        .build()));
+                .orElseGet(() -> {
+                    ChartOfAccounts account = new ChartOfAccounts();
+                    account.setCode("2010");
+                    account.setName("Vendor Payables");
+                    account.setType(AccountType.LIABILITY);
+                    account.setDescription("Outstanding liabilities owed to vendors and marketing agencies");
+                    return accountRepository.save(account);
+                });
 
         // Ensure Purchase Journal
         Journal purchaseJournal = journalRepository.findByType(JournalType.PURCHASE)
-                .orElseGet(() -> journalRepository.save(Journal.builder()
-                        .code("JRN-PURCHASE")
-                        .name("Purchase Journal")
-                        .type(JournalType.PURCHASE)
-                        .description("Journal for recording vendor bills and campaign procurement liabilities")
-                        .build()));
+                .orElseGet(() -> {
+                    Journal journal = new Journal();
+                    journal.setCode("JRN-PURCHASE");
+                    journal.setName("Purchase Journal");
+                    journal.setType(JournalType.PURCHASE);
+                    journal.setDescription("Journal for recording vendor bills and campaign procurement liabilities");
+                    return journalRepository.save(journal);
+                });
 
         // Post Double-Entry Journal: Debit Event Expense, Credit Vendor Payables
         accountingService.recordJournalEntry(
@@ -153,14 +157,13 @@ public class ProcurementService {
         String paymentNumber = "PAY-" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMM"))
                 + "-" + UUID.randomUUID().toString().substring(0, 5).toUpperCase();
 
-        Payment payment = Payment.builder()
-                .paymentNumber(paymentNumber)
-                .vendorBill(bill)
-                .amount(dto.getAmount())
-                .paymentDate(LocalDate.now())
-                .paymentMethod(dto.getPaymentMethod())
-                .reference(dto.getReference())
-                .build();
+        Payment payment = new Payment();
+        payment.setPaymentNumber(paymentNumber);
+        payment.setVendorBill(bill);
+        payment.setAmount(dto.getAmount());
+        payment.setPaymentDate(LocalDate.now());
+        payment.setPaymentMethod(dto.getPaymentMethod());
+        payment.setReference(dto.getReference());
         Payment savedPayment = paymentRepository.save(payment);
 
         // Mark Bill as PAID
@@ -174,12 +177,14 @@ public class ProcurementService {
                 .orElseThrow(() -> new ResourceNotFoundException("Endowment Cash & Bank account not found."));
 
         Journal bankJournal = journalRepository.findByType(JournalType.BANK_CASH)
-                .orElseGet(() -> journalRepository.save(Journal.builder()
-                        .code("JRN-BANK")
-                        .name("Bank & Cash Journal")
-                        .type(JournalType.BANK_CASH)
-                        .description("Journal for recording disbursements and cash receipts")
-                        .build()));
+                .orElseGet(() -> {
+                    Journal journal = new Journal();
+                    journal.setCode("JRN-BANK");
+                    journal.setName("Bank & Cash Journal");
+                    journal.setType(JournalType.BANK_CASH);
+                    journal.setDescription("Journal for recording disbursements and cash receipts");
+                    return journalRepository.save(journal);
+                });
 
         // Double-Entry: Debit Payables (reduces liability), Credit Bank (reduces asset)
         accountingService.recordJournalEntry(

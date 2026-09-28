@@ -82,14 +82,14 @@ class AlumniPortalApplicationTests {
         AlumniResponseDto alumni = alumniService.registerAlumni(req);
 
         // Fetch or create campaign
-        Campaign campaign = campaignRepository.findAll().stream().findFirst().orElseGet(() ->
-                campaignRepository.save(Campaign.builder()
-                        .name("Test Science Wing")
-                        .targetAmount(new BigDecimal("100000.00"))
-                        .collectedAmount(BigDecimal.ZERO)
-                        .status("ACTIVE")
-                        .build())
-        );
+        Campaign campaign = campaignRepository.findAll().stream().findFirst().orElseGet(() -> {
+            Campaign testCampaign = new Campaign();
+            testCampaign.setName("Test Science Wing");
+            testCampaign.setTargetAmount(new BigDecimal("100000.00"));
+            testCampaign.setCollectedAmount(BigDecimal.ZERO);
+            testCampaign.setStatus("ACTIVE");
+            return campaignRepository.save(testCampaign);
+        });
 
         BigDecimal initialCollected = campaign.getCollectedAmount();
 

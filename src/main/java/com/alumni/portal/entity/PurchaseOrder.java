@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class PurchaseOrder {
 
     @Id
@@ -44,19 +43,16 @@ public class PurchaseOrder {
     @Column(nullable = false)
     private BigDecimal amount;
 
-    @Builder.Default
     @Column(name = "order_date", nullable = false)
     private LocalDate orderDate = LocalDate.now();
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
     @Column(nullable = false)
     private POStatus status = POStatus.APPROVED;
 
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Builder.Default
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 }

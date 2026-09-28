@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.alumni.portal.AlumniPortalApplicationTests" time="10.284" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.alumni.portal.AlumniPortalApplicationTests" time="16.824" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21.0.10\bin"/>
-    <property name="sun.java.command" value="C:\Users\DELL\AppData\Local\Temp\surefire7875480571987884218\surefirebooter-20260927191001440_3.jar C:\Users\DELL\AppData\Local\Temp\surefire7875480571987884218 2026-09-27T19-10-01_246-jvmRun1 surefire-20260927191001440_1tmp surefire_0-20260927191001440_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\DELL\AppData\Local\Temp\surefire3635762742701882775\surefirebooter-20260928091057407_3.jar C:\Users\DELL\AppData\Local\Temp\surefire3635762742701882775 2026-09-28T09-10-57_143-jvmRun1 surefire-20260928091057407_1tmp surefire_0-20260928091057407_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\DELL\OneDrive\Desktop\DBMS java project\target\test-classes;C:\Users\DELL\OneDrive\Desktop\DBMS java project\target\classes;C:\Users\DELL\.m2\repository\org\springframework\boot\spring-boot-starter-web\3.2.5\spring-boot-starter-web-3.2.5.jar;C:\Users\DELL\.m2\repository\org\springframework\boot\spring-boot-starter\3.2.5\spring-boot-starter-3.2.5.jar;C:\Users\DELL\.m2\repository\org\springframework\boot\spring-boot\3.2.5\spring-boot-3.2.5.jar;C:\Users\DELL\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.2.5\spring-boot-autoconfigure-3.2.5.jar;C:\Users\DELL\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.2.5\spring-boot-starter-logging-3.2.5.jar;C:\Users\DELL\.m2\repository\ch\qos\logback\logback-classic\1.4.14\logback-classic-1.4.14.jar;C:\Users\DELL\.m2\repository\ch\qos\logback\logback-core\1.4.14\logback-core-1.4.14.jar;C:\Users\DELL\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.21.1\log4j-to-slf4j-2.21.1.jar;C:\Users\DELL\.m2\repository\org\apache\logging\log4j\log4j-api\2.21.1\log4j-api-2.21.1.jar;C:\Users\DELL\.m2\repository\org\slf4j\jul-to-slf4j\2.0.13\jul-to-slf4j-2.0.13.jar;C:\Users\DELL\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\DELL\.m2\repository\org\yaml\snakeyaml\2.2\snakeyaml-2.2.jar;C:\Users\DELL\.m2\repository\org\springframework\boot\spring-boot-starter-json\3.2.5\spring-boot-starter-json-3.2.5.jar;C:\Users\DELL\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.15.4\jackson-databind-2.15.4.jar;C:\Users\DELL\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.15.4\jackson-annotations-2.15.4.jar;C:\Users\DELL\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.15.4\jackson-core-2.15.4.jar;C:\Users\DELL\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.15.4\jackson-datatype-jdk8-2.15.4.jar;C:\Users\DELL\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.15.4\jackson-datatype-jsr310-2.15.4.jar;C:\Users\DELL\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.15.4\jackson-module-parameter-names-2.15.4.jar;C:\Users\DELL\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\3.2.5\spring-boot-starter-tomcat-3.2.5.jar;C:\Users\DELL\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\10.1.20\tomcat-embed-core-10.1.20.jar;C:\Users\DELL\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\10.1.20\tomcat-embed-websocket-10.1.20.jar;C:\Users\DELL\.m2\repository\org\springframework\spring-web\6.1.6\spring-web-6.1.6.jar;C:\Users\DELL\.m2\repository\org\springframework\spring-beans\6.1.6\spring-beans-6.1.6.jar;C:\Users\DELL\.m2\repository\io\micrometer\micrometer-observation\1.12.5\micrometer-observation-1.12.5.jar;C:\Users\DELL\.m2\repository\io\micrometer\micrometer-commons\1.12.5\micrometer-commons-1.12.5.jar;C:\Users\DELL\.m2\repository\org\springframework\spring-webmvc\6.1.6\spring-webmvc-6.1.6.jar;C:\Users\DELL\.m2\repository\org\springframework\spring-context\6.1.6\spring-context-6.1.6.jar;C:\Users\DELL\.m2\repository\org\springframework\spring-expression\6.1.6\spring-expression-6.1.6.jar;C:\Users\DELL\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\3.2.5\spring-boot-starter-data-jpa-3.2.5.jar;C:\Users\DELL\.m2\repository\org\springframework\boot\spring-boot-starter-aop\3.2.5\spring-boot-starter-aop-3.2.5.jar;C:\Users\DELL\.m2\repository\org\aspectj\aspectjweaver\1.9.22\aspectjweaver-1.9.22.jar;C:\Users\DELL\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\3.2.5\spring-boot-starter-jdbc-3.2.5.jar;C:\Users\DELL\.m2\repository\com\zaxxer\HikariCP\5.0.1\HikariCP-5.0.1.jar;C:\Users\DELL\.m2\repository\org\springframework\spring-jdbc\6.1.6\spring-jdbc-6.1.6.jar;C:\Users\DELL\.m2\repository\org\hibernate\orm\hibernate-core\6.4.4.Final\hibernate-core-6.4.4.Final.jar;C:\Users\DELL\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.1.0\jakarta.persistence-api-3.1.0.jar;C:\Users\DELL\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.1\jakarta.transaction-api-2.0.1.jar;C:\Users\DELL\.m2\repository\org\jboss\logging\jboss-logging\3.5.3.Final\jboss-logging-3.5.3.Final.jar;C:\Users\DELL\.m2\repository\org\hibernate\common\hibernate-commons-annotations\6.0.6.Final\hibernate-commons-annotations-6.0.6.Final.jar;C:\Users\DELL\.m2\repository\io\smallrye\jandex\3.1.2\jandex-3.1.2.jar;C:\Users\DELL\.m2\repository\com\fasterxml\classmate\1.6.0\classmate-1.6.0.jar;C:\Users\DELL\.m2\repository\net\bytebuddy\byte-buddy\1.14.13\byte-buddy-1.14.13.jar;C:\Users\DELL\.m2\repository\org\glassfish\jaxb\jaxb-runtime\4.0.5\jaxb-runtime-4.0.5.jar;C:\Users\DELL\.m2\repository\org\glassfish\jaxb\jaxb-core\4.0.5\jaxb-core-4.0.5.jar;C:\Users\DELL\.m2\repository\org\eclipse\angus\angus-activation\2.0.2\angus-activation-2.0.2.jar;C:\Users\DELL\.m2\repository\org\glassfish\jaxb\txw2\4.0.5\txw2-4.0.5.jar;C:\Users\DELL\.m2\repository\com\sun\istack\istack-commons-runtime\4.1.2\istack-commons-runtime-4.1.2.jar;C:\Users\DELL\.m2\repository\jakarta\inject\jakarta.inject-api\2.0.1\jakarta.inject-api-2.0.1.jar;C:\Users\DELL\.m2\repository\org\antlr\antlr4-runtime\4.13.0\antlr4-runtime-4.13.0.jar;C:\Users\DELL\.m2\repository\org\springframework\data\spring-data-jpa\3.2.5\spring-data-jpa-3.2.5.jar;C:\Users\DELL\.m2\repository\org\springframework\data\spring-data-commons\3.2.5\spring-data-commons-3.2.5.jar;C:\Users\DELL\.m2\repository\org\springframework\spring-orm\6.1.6\spring-orm-6.1.6.jar;C:\Users\DELL\.m2\repository\org\springframework\spring-tx\6.1.6\spring-tx-6.1.6.jar;C:\Users\DELL\.m2\repository\org\springframework\spring-aspects\6.1.6\spring-aspects-6.1.6.jar;C:\Users\DELL\.m2\repository\org\springframework\boot\spring-boot-starter-security\3.2.5\spring-boot-starter-security-3.2.5.jar;C:\Users\DELL\.m2\repository\org\springframework\spring-aop\6.1.6\spring-aop-6.1.6.jar;C:\Users\DELL\.m2\repository\org\springframework\security\spring-security-config\6.2.4\spring-security-config-6.2.4.jar;C:\Users\DELL\.m2\repository\org\springframework\security\spring-security-web\6.2.4\spring-security-web-6.2.4.jar;C:\Users\DELL\.m2\repository\org\springframework\boot\spring-boot-starter-validation\3.2.5\spring-boot-starter-validation-3.2.5.jar;C:\Users\DELL\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\10.1.20\tomcat-embed-el-10.1.20.jar;C:\Users\DELL\.m2\repository\org\hibernate\validator\hibernate-validator\8.0.1.Final\hibernate-validator-8.0.1.Final.jar;C:\Users\DELL\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.2\jakarta.validation-api-3.0.2.jar;C:\Users\DELL\.m2\repository\org\springframework\boot\spring-boot-starter-thymeleaf\3.2.5\spring-boot-starter-thymeleaf-3.2.5.jar;C:\Users\DELL\.m2\repository\org\thymeleaf\thymeleaf-spring6\3.1.2.RELEASE\thymeleaf-spring6-3.1.2.RELEASE.jar;C:\Users\DELL\.m2\repository\org\thymeleaf\thymeleaf\3.1.2.RELEASE\thymeleaf-3.1.2.RELEASE.jar;C:\Users\DELL\.m2\repository\org\attoparser\attoparser\2.0.7.RELEASE\attoparser-2.0.7.RELEASE.jar;C:\Users\DELL\.m2\repository\org\unbescape\unbescape\1.1.6.RELEASE\unbescape-1.1.6.RELEASE.jar;C:\Users\DELL\.m2\repository\org\thymeleaf\extras\thymeleaf-extras-springsecurity6\3.1.2.RELEASE\thymeleaf-extras-springsecurity6-3.1.2.RELEASE.jar;C:\Users\DELL\.m2\repository\org\slf4j\slf4j-api\2.0.13\slf4j-api-2.0.13.jar;C:\Users\DELL\.m2\repository\com\mysql\mysql-connector-j\8.3.0\mysql-connector-j-8.3.0.jar;C:\Users\DELL\.m2\repository\com\h2database\h2\2.2.224\h2-2.2.224.jar;C:\Users\DELL\.m2\repository\org\projectlombok\lombok\1.18.32\lombok-1.18.32.jar;C:\Users\DELL\.m2\repository\org\springframework\boot\spring-boot-starter-test\3.2.5\spring-boot-starter-test-3.2.5.jar;C:\Users\DELL\.m2\repository\org\springframework\boot\spring-boot-test\3.2.5\spring-boot-test-3.2.5.jar;C:\Users\DELL\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\3.2.5\spring-boot-test-autoconfigure-3.2.5.jar;C:\Users\DELL\.m2\repository\com\jayway\jsonpath\json-path\2.9.0\json-path-2.9.0.jar;C:\Users\DELL\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.2\jakarta.xml.bind-api-4.0.2.jar;C:\Users\DELL\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.3\jakarta.activation-api-2.1.3.jar;C:\Users\DELL\.m2\repository\net\minidev\json-smart\2.5.1\json-smart-2.5.1.jar;C:\Users\DELL\.m2\repository\net\minidev\accessors-smart\2.5.1\accessors-smart-2.5.1.jar;C:\Users\DELL\.m2\repository\org\ow2\asm\asm\9.6\asm-9.6.jar;C:\Users\DELL\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\DELL\.m2\repository\org\awaitility\awaitility\4.2.1\awaitility-4.2.1.jar;C:\Users\DELL\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\DELL\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\DELL\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\DELL\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\DELL\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\DELL\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\DELL\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\DELL\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\DELL\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;C:\Users\DELL\.m2\repository\org\mockito\mockito-core\5.7.0\mockito-core-5.7.0.jar;C:\Users\DELL\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.13\byte-buddy-agent-1.14.13.jar;C:\Users\DELL\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\DELL\.m2\repository\org\mockito\mockito-junit-jupiter\5.7.0\mockito-junit-jupiter-5.7.0.jar;C:\Users\DELL\.m2\repository\org\skyscreamer\jsonassert\1.5.1\jsonassert-1.5.1.jar;C:\Users\DELL\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\DELL\.m2\repository\org\springframework\spring-core\6.1.6\spring-core-6.1.6.jar;C:\Users\DELL\.m2\repository\org\springframework\spring-jcl\6.1.6\spring-jcl-6.1.6.jar;C:\Users\DELL\.m2\repository\org\springframework\spring-test\6.1.6\spring-test-6.1.6.jar;C:\Users\DELL\.m2\repository\org\xmlunit\xmlunit-core\2.9.1\xmlunit-core-2.9.1.jar;C:\Users\DELL\.m2\repository\org\springframework\security\spring-security-test\6.2.4\spring-security-test-6.2.4.jar;C:\Users\DELL\.m2\repository\org\springframework\security\spring-security-core\6.2.4\spring-security-core-6.2.4.jar;C:\Users\DELL\.m2\repository\org\springframework\security\spring-security-crypto\6.2.4\spring-security-crypto-6.2.4.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -33,7 +33,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="FILE_LOG_CHARSET" value="UTF-8"/>
     <property name="java.awt.headless" value="true"/>
-    <property name="surefire.real.class.path" value="C:\Users\DELL\AppData\Local\Temp\surefire7875480571987884218\surefirebooter-20260927191001440_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\DELL\AppData\Local\Temp\surefire3635762742701882775\surefirebooter-20260928091057407_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.10+8-LTS-217"/>
@@ -52,7 +52,7 @@
     <property name="user.dir" value="C:\Users\DELL\OneDrive\Desktop\DBMS java project"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="PID" value="17976"/>
+    <property name="PID" value="18968"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
     <property name="native.encoding" value="Cp1252"/>
@@ -63,10 +63,11 @@
     <property name="java.vm.version" value="21.0.10+8-LTS-217"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
+    <property name="LOGGED_APPLICATION_NAME" value="[alumni-portal] "/>
   </properties>
-  <testcase name="testFinancialReports" classname="com.alumni.portal.AlumniPortalApplicationTests" time="0.578">
-    <system-out><![CDATA[19:10:02.429 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.alumni.portal.AlumniPortalApplicationTests]: AlumniPortalApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-19:10:02.631 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.alumni.portal.AlumniPortalApplication for test class com.alumni.portal.AlumniPortalApplicationTests
+  <testcase name="testFinancialReports" classname="com.alumni.portal.AlumniPortalApplicationTests" time="0.91">
+    <system-out><![CDATA[09:10:59.323 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.alumni.portal.AlumniPortalApplicationTests]: AlumniPortalApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+09:10:59.614 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.alumni.portal.AlumniPortalApplication for test class com.alumni.portal.AlumniPortalApplicationTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -76,25 +77,25 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.5)
 
-2026-09-27T19:10:03.235+05:30  INFO 17976 --- [           main] c.a.portal.AlumniPortalApplicationTests  : Starting AlumniPortalApplicationTests using Java 21.0.10 with PID 17976 (started by DELL in C:\Users\DELL\OneDrive\Desktop\DBMS java project)
-2026-09-27T19:10:03.236+05:30  INFO 17976 --- [           main] c.a.portal.AlumniPortalApplicationTests  : No active profile set, falling back to 1 default profile: "default"
-2026-09-27T19:10:04.773+05:30  INFO 17976 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-09-27T19:10:04.947+05:30  INFO 17976 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 160 ms. Found 16 JPA repository interfaces.
-2026-09-27T19:10:05.920+05:30  INFO 17976 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-09-27T19:10:06.020+05:30  INFO 17976 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-09-27T19:10:06.070+05:30  INFO 17976 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-09-27T19:10:06.499+05:30  INFO 17976 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-09-27T19:10:06.564+05:30  INFO 17976 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-09-27T19:10:06.904+05:30  INFO 17976 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
-2026-09-27T19:10:06.905+05:30  INFO 17976 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-09-27T19:10:06.947+05:30  WARN 17976 --- [           main] org.hibernate.dialect.Dialect            : HHH000511: The 2.2.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
-2026-09-27T19:10:06.951+05:30  WARN 17976 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-09-27T19:10:08.416+05:30  INFO 17976 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-28T09:11:00.542+05:30  INFO 18968 --- [alumni-portal] [           main] c.a.portal.AlumniPortalApplicationTests  : Starting AlumniPortalApplicationTests using Java 21.0.10 with PID 18968 (started by DELL in C:\Users\DELL\OneDrive\Desktop\DBMS java project)
+2026-09-28T09:11:00.545+05:30  INFO 18968 --- [alumni-portal] [           main] c.a.portal.AlumniPortalApplicationTests  : No active profile set, falling back to 1 default profile: "default"
+2026-09-28T09:11:02.468+05:30  INFO 18968 --- [alumni-portal] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-28T09:11:02.719+05:30  INFO 18968 --- [alumni-portal] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 236 ms. Found 16 JPA repository interfaces.
+2026-09-28T09:11:04.245+05:30  INFO 18968 --- [alumni-portal] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-28T09:11:04.451+05:30  INFO 18968 --- [alumni-portal] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-09-28T09:11:04.553+05:30  INFO 18968 --- [alumni-portal] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-09-28T09:11:05.362+05:30  INFO 18968 --- [alumni-portal] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-28T09:11:05.446+05:30  INFO 18968 --- [alumni-portal] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-28T09:11:05.878+05:30  INFO 18968 --- [alumni-portal] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2026-09-28T09:11:05.880+05:30  INFO 18968 --- [alumni-portal] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-28T09:11:05.950+05:30  WARN 18968 --- [alumni-portal] [           main] org.hibernate.dialect.Dialect            : HHH000511: The 2.2.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2026-09-28T09:11:05.959+05:30  WARN 18968 --- [alumni-portal] [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-09-28T09:11:08.058+05:30  INFO 18968 --- [alumni-portal] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 Hibernate: 
     alter table budgets 
        drop 
        foreign key FKca840597rwpbf9nmphywrmn9a
-2026-09-27T19:10:08.431+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.085+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table budgets 
        drop 
        foreign key FKca840597rwpbf9nmphywrmn9a" via JDBC [Table "BUDGETS" not found;]
@@ -245,7 +246,7 @@ Hibernate:
     alter table donations 
        drop 
        foreign key FK809qyg35nmyovk4tnkuktb5rq
-2026-09-27T19:10:08.436+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.098+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table donations 
        drop 
        foreign key FK809qyg35nmyovk4tnkuktb5rq" via JDBC [Table "DONATIONS" not found;]
@@ -396,7 +397,7 @@ Hibernate:
     alter table donations 
        drop 
        foreign key FKr5m6trggwgkgoanlalgea1psh
-2026-09-27T19:10:08.440+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.105+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table donations 
        drop 
        foreign key FKr5m6trggwgkgoanlalgea1psh" via JDBC [Table "DONATIONS" not found;]
@@ -547,7 +548,7 @@ Hibernate:
     alter table donations 
        drop 
        foreign key FK3xhvkv8do7hyw8fr26da8pms1
-2026-09-27T19:10:08.445+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.110+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table donations 
        drop 
        foreign key FK3xhvkv8do7hyw8fr26da8pms1" via JDBC [Table "DONATIONS" not found;]
@@ -698,7 +699,7 @@ Hibernate:
     alter table donations 
        drop 
        foreign key FK13lf3xnrsovswyjsn299iuapo
-2026-09-27T19:10:08.447+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.114+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table donations 
        drop 
        foreign key FK13lf3xnrsovswyjsn299iuapo" via JDBC [Table "DONATIONS" not found;]
@@ -849,7 +850,7 @@ Hibernate:
     alter table event_registrations 
        drop 
        foreign key FKfcn7iiuw6jvnmuq41mueoe0qw
-2026-09-27T19:10:08.451+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.120+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table event_registrations 
        drop 
        foreign key FKfcn7iiuw6jvnmuq41mueoe0qw" via JDBC [Table "EVENT_REGISTRATIONS" not found;]
@@ -1000,7 +1001,7 @@ Hibernate:
     alter table event_registrations 
        drop 
        foreign key FKtb8ig09mtyyv76aggbw0qj8ps
-2026-09-27T19:10:08.453+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.125+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table event_registrations 
        drop 
        foreign key FKtb8ig09mtyyv76aggbw0qj8ps" via JDBC [Table "EVENT_REGISTRATIONS" not found;]
@@ -1151,7 +1152,7 @@ Hibernate:
     alter table journal_entries 
        drop 
        foreign key FKb49inuyk58confcp7oqtn2txr
-2026-09-27T19:10:08.455+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.128+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table journal_entries 
        drop 
        foreign key FKb49inuyk58confcp7oqtn2txr" via JDBC [Table "JOURNAL_ENTRIES" not found;]
@@ -1302,7 +1303,7 @@ Hibernate:
     alter table journal_entries 
        drop 
        foreign key FK8wlsqd7r6i95ybiuo5x7indhm
-2026-09-27T19:10:08.457+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.138+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table journal_entries 
        drop 
        foreign key FK8wlsqd7r6i95ybiuo5x7indhm" via JDBC [Table "JOURNAL_ENTRIES" not found;]
@@ -1453,7 +1454,7 @@ Hibernate:
     alter table journal_entries 
        drop 
        foreign key FKpd3d0suw1ro4w6lf3vxikv54g
-2026-09-27T19:10:08.460+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.144+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table journal_entries 
        drop 
        foreign key FKpd3d0suw1ro4w6lf3vxikv54g" via JDBC [Table "JOURNAL_ENTRIES" not found;]
@@ -1604,7 +1605,7 @@ Hibernate:
     alter table journal_entries 
        drop 
        foreign key FKaeg8fn0yg6nexouwe3amy7qx1
-2026-09-27T19:10:08.463+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.148+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table journal_entries 
        drop 
        foreign key FKaeg8fn0yg6nexouwe3amy7qx1" via JDBC [Table "JOURNAL_ENTRIES" not found;]
@@ -1755,7 +1756,7 @@ Hibernate:
     alter table mentor_profiles 
        drop 
        foreign key FK6i1oa3yrp7on6n4pq1a77jy1g
-2026-09-27T19:10:08.465+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.156+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table mentor_profiles 
        drop 
        foreign key FK6i1oa3yrp7on6n4pq1a77jy1g" via JDBC [Table "MENTOR_PROFILES" not found;]
@@ -1906,7 +1907,7 @@ Hibernate:
     alter table mentorship_sessions 
        drop 
        foreign key FKi1e9yvjn2abwpk1sd2su2olix
-2026-09-27T19:10:08.467+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.159+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table mentorship_sessions 
        drop 
        foreign key FKi1e9yvjn2abwpk1sd2su2olix" via JDBC [Table "MENTORSHIP_SESSIONS" not found;]
@@ -2057,7 +2058,7 @@ Hibernate:
     alter table payments 
        drop 
        foreign key FKck3w823xj4wifkb7i4f4ob4l2
-2026-09-27T19:10:08.469+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.163+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table payments 
        drop 
        foreign key FKck3w823xj4wifkb7i4f4ob4l2" via JDBC [Table "PAYMENTS" not found;]
@@ -2208,7 +2209,7 @@ Hibernate:
     alter table purchase_orders 
        drop 
        foreign key FKhftfjk4akeood6ure4snwkobf
-2026-09-27T19:10:08.470+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.166+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table purchase_orders 
        drop 
        foreign key FKhftfjk4akeood6ure4snwkobf" via JDBC [Table "PURCHASE_ORDERS" not found;]
@@ -2359,7 +2360,7 @@ Hibernate:
     alter table purchase_orders 
        drop 
        foreign key FK3hqe4r3tqg9eskv14yo0k65wn
-2026-09-27T19:10:08.472+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.170+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table purchase_orders 
        drop 
        foreign key FK3hqe4r3tqg9eskv14yo0k65wn" via JDBC [Table "PURCHASE_ORDERS" not found;]
@@ -2510,7 +2511,7 @@ Hibernate:
     alter table purchase_orders 
        drop 
        foreign key FK90vw02remfggo0u26su71i5j
-2026-09-27T19:10:08.473+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.175+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table purchase_orders 
        drop 
        foreign key FK90vw02remfggo0u26su71i5j" via JDBC [Table "PURCHASE_ORDERS" not found;]
@@ -2661,7 +2662,7 @@ Hibernate:
     alter table vendor_bills 
        drop 
        foreign key FK7seoxrdyykdblrvaohpkefcan
-2026-09-27T19:10:08.476+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.180+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table vendor_bills 
        drop 
        foreign key FK7seoxrdyykdblrvaohpkefcan" via JDBC [Table "VENDOR_BILLS" not found;]
@@ -2812,7 +2813,7 @@ Hibernate:
     alter table vendor_bills 
        drop 
        foreign key FKchkvdaattynr8t0xw4yafnnv1
-2026-09-27T19:10:08.479+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.184+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table vendor_bills 
        drop 
        foreign key FKchkvdaattynr8t0xw4yafnnv1" via JDBC [Table "VENDOR_BILLS" not found;]
@@ -2963,7 +2964,7 @@ Hibernate:
     alter table vendor_bills 
        drop 
        foreign key FKqppluykg7u7rgrwfoqjpvohe
-2026-09-27T19:10:08.481+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.187+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table vendor_bills 
        drop 
        foreign key FKqppluykg7u7rgrwfoqjpvohe" via JDBC [Table "VENDOR_BILLS" not found;]
@@ -3114,7 +3115,7 @@ Hibernate:
     alter table vendor_bills 
        drop 
        foreign key FKc8i49jsato6wykialcct43opk
-2026-09-27T19:10:08.483+05:30  WARN 17976 --- [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
+2026-09-28T09:11:08.190+05:30  WARN 18968 --- [alumni-portal] [           main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "
     alter table vendor_bills 
        drop 
        foreign key FKc8i49jsato6wykialcct43opk" via JDBC [Table "VENDOR_BILLS" not found;]
@@ -3652,16 +3653,16 @@ Hibernate:
        add constraint FKc8i49jsato6wykialcct43opk 
        foreign key (vendor_id) 
        references contacts (id)
-2026-09-27T19:10:08.578+05:30  INFO 17976 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-09-27T19:10:09.089+05:30  INFO 17976 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-09-27T19:10:11.028+05:30  INFO 17976 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@68e5b609, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4d1f1b98, org.springframework.security.web.context.SecurityContextHolderFilter@25c66a5a, org.springframework.security.web.header.HeaderWriterFilter@2ce01617, org.springframework.web.filter.CorsFilter@36011924, org.springframework.security.web.authentication.logout.LogoutFilter@6eac0029, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5ef5455c, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@4c56e671, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@45f3891c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@13e4acf6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5ff1aece, org.springframework.security.web.access.ExceptionTranslationFilter@14cb5250, org.springframework.security.web.access.intercept.AuthorizationFilter@13f3a04e]
-2026-09-27T19:10:11.546+05:30  INFO 17976 --- [           main] c.a.portal.AlumniPortalApplicationTests  : Started AlumniPortalApplicationTests in 8.688 seconds (process running for 9.963)
+2026-09-28T09:11:08.347+05:30  INFO 18968 --- [alumni-portal] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-28T09:11:09.596+05:30  INFO 18968 --- [alumni-portal] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-28T09:11:13.126+05:30  INFO 18968 --- [alumni-portal] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5883f0d5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@16139b0, org.springframework.security.web.context.SecurityContextHolderFilter@65d07158, org.springframework.security.web.header.HeaderWriterFilter@5d9e5f2f, org.springframework.web.filter.CorsFilter@37d4b676, org.springframework.security.web.authentication.logout.LogoutFilter@49ed96e3, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@11cac750, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@13e4acf6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@677b00ae, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@76802b8c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6801536, org.springframework.security.web.access.ExceptionTranslationFilter@196f7dfd, org.springframework.security.web.access.intercept.AuthorizationFilter@5f5d5739]
+2026-09-28T09:11:14.158+05:30  INFO 18968 --- [alumni-portal] [           main] c.a.portal.AlumniPortalApplicationTests  : Started AlumniPortalApplicationTests in 14.193 seconds (process running for 16.514)
 Hibernate: 
     select
         count(*) 
     from
         chart_of_accounts coa1_0
-2026-09-27T19:10:11.641+05:30  INFO 17976 --- [           main] com.alumni.portal.config.DataLoader      : Initializing Master Data, CoA, Journals, Campaigns, and Seed Records...
+2026-09-28T09:11:14.379+05:30  INFO 18968 --- [alumni-portal] [           main] com.alumni.portal.config.DataLoader      : Initializing Master Data, CoA, Journals, Campaigns, and Seed Records...
 Hibernate: 
     insert 
     into
@@ -3872,7 +3873,7 @@ Hibernate:
         (amount, campaign_id, credit_account_id, debit_account_id, description, entry_date, journal_id, reference_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?)
-2026-09-27T19:10:11.768+05:30  INFO 17976 --- [           main] com.alumni.portal.config.DataLoader      : Master data initialization completed successfully.
+2026-09-28T09:11:14.567+05:30  INFO 18968 --- [alumni-portal] [           main] com.alumni.portal.config.DataLoader      : Master data initialization completed successfully.
 Hibernate: 
     select
         coa1_0.id,
@@ -3928,7 +3929,7 @@ WARNING: If a serviceability tool is not in use, please run with -Djdk.instrumen
 WARNING: Dynamic loading of agents will be disallowed by default in a future release
 ]]></system-err>
   </testcase>
-  <testcase name="testRecordDonationAndLedgerEntry" classname="com.alumni.portal.AlumniPortalApplicationTests" time="0.083">
+  <testcase name="testRecordDonationAndLedgerEntry" classname="com.alumni.portal.AlumniPortalApplicationTests" time="0.131">
     <system-out><![CDATA[Hibernate: 
     select
         a1_0.id 
@@ -4160,7 +4161,7 @@ Hibernate:
         c1_0.id=?
 ]]></system-out>
   </testcase>
-  <testcase name="testRegisterAlumniAndSearch" classname="com.alumni.portal.AlumniPortalApplicationTests" time="0.022">
+  <testcase name="testRegisterAlumniAndSearch" classname="com.alumni.portal.AlumniPortalApplicationTests" time="0.049">
     <system-out><![CDATA[Hibernate: 
     select
         a1_0.id 
@@ -4206,5 +4207,5 @@ Hibernate:
         a1_0.donation_total desc
 ]]></system-out>
   </testcase>
-  <testcase name="contextLoads" classname="com.alumni.portal.AlumniPortalApplicationTests" time="0.003"/>
+  <testcase name="contextLoads" classname="com.alumni.portal.AlumniPortalApplicationTests" time="0.008"/>
 </testsuite>

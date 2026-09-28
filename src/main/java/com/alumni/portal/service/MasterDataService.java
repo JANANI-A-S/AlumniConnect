@@ -26,13 +26,12 @@ public class MasterDataService {
 
     @Transactional
     public Contact createContact(ContactRequestDto dto) {
-        Contact contact = Contact.builder()
-                .name(dto.getName())
-                .email(dto.getEmail())
-                .phone(dto.getPhone())
-                .organization(dto.getOrganization())
-                .contactType(dto.getContactType())
-                .build();
+        Contact contact = new Contact();
+        contact.setName(dto.getName());
+        contact.setEmail(dto.getEmail());
+        contact.setPhone(dto.getPhone());
+        contact.setOrganization(dto.getOrganization());
+        contact.setContactType(dto.getContactType());
         return contactRepository.save(contact);
     }
 
@@ -51,12 +50,11 @@ public class MasterDataService {
         if (productRepository.findByName(dto.getName()).isPresent()) {
             throw new BadRequestException("Product with name '" + dto.getName() + "' already exists.");
         }
-        Product product = Product.builder()
-                .name(dto.getName())
-                .productType(dto.getProductType())
-                .price(dto.getPrice() != null ? dto.getPrice() : BigDecimal.ZERO)
-                .description(dto.getDescription())
-                .build();
+        Product product = new Product();
+        product.setName(dto.getName());
+        product.setProductType(dto.getProductType());
+        product.setPrice(dto.getPrice() != null ? dto.getPrice() : BigDecimal.ZERO);
+        product.setDescription(dto.getDescription());
         return productRepository.save(product);
     }
 

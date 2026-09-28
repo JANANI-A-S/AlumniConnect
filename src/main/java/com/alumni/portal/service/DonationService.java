@@ -49,29 +49,35 @@ public class DonationService {
 
         // Ensure Chart of Accounts for Bank and Donation Revenue exist
         ChartOfAccounts bankAccount = accountRepository.findByCode("1010")
-                .orElseGet(() -> accountRepository.save(ChartOfAccounts.builder()
-                        .code("1010")
-                        .name("Endowment Cash & Bank")
-                        .type(AccountType.ASSET)
-                        .description("Primary bank account for institutional endowment")
-                        .build()));
+                .orElseGet(() -> {
+                    ChartOfAccounts account = new ChartOfAccounts();
+                    account.setCode("1010");
+                    account.setName("Endowment Cash & Bank");
+                    account.setType(AccountType.ASSET);
+                    account.setDescription("Primary bank account for institutional endowment");
+                    return accountRepository.save(account);
+                });
 
         ChartOfAccounts donationRevenueAccount = accountRepository.findByCode("4010")
-                .orElseGet(() -> accountRepository.save(ChartOfAccounts.builder()
-                        .code("4010")
-                        .name("Alumni Donations Revenue")
-                        .type(AccountType.INCOME)
-                        .description("Revenue from alumni endowment contributions")
-                        .build()));
+                .orElseGet(() -> {
+                    ChartOfAccounts account = new ChartOfAccounts();
+                    account.setCode("4010");
+                    account.setName("Alumni Donations Revenue");
+                    account.setType(AccountType.INCOME);
+                    account.setDescription("Revenue from alumni endowment contributions");
+                    return accountRepository.save(account);
+                });
 
         // Ensure Grants/Donations Journal exists
         Journal donationsJournal = journalRepository.findByType(JournalType.GRANTS_DONATIONS)
-                .orElseGet(() -> journalRepository.save(Journal.builder()
-                        .code("JRN-DONATION")
-                        .name("Grants & Donations Journal")
-                        .type(JournalType.GRANTS_DONATIONS)
-                        .description("Journal for recording incoming alumni gifts and endowment donations")
-                        .build()));
+                .orElseGet(() -> {
+                    Journal journal = new Journal();
+                    journal.setCode("JRN-DONATION");
+                    journal.setName("Grants & Donations Journal");
+                    journal.setType(JournalType.GRANTS_DONATIONS);
+                    journal.setDescription("Journal for recording incoming alumni gifts and endowment donations");
+                    return journalRepository.save(journal);
+                });
 
         // Post Double-Entry Journal Entry: Debit Bank, Credit Donation Revenue
         JournalEntry journalEntry = accountingService.recordJournalEntry(
@@ -85,17 +91,16 @@ public class DonationService {
         );
 
         // Save Donation
-        Donation donation = Donation.builder()
-                .alumni(alumni)
-                .campaign(campaign)
-                .product(product)
-                .amount(dto.getAmount())
-                .donationDate(LocalDateTime.now())
-                .paymentMethod(dto.getPaymentMethod())
-                .receiptNumber(receiptNumber)
-                .notes(dto.getNotes())
-                .journalEntry(journalEntry)
-                .build();
+        Donation donation = new Donation();
+        donation.setAlumni(alumni);
+        donation.setCampaign(campaign);
+        donation.setProduct(product);
+        donation.setAmount(dto.getAmount());
+        donation.setDonationDate(LocalDateTime.now());
+        donation.setPaymentMethod(dto.getPaymentMethod());
+        donation.setReceiptNumber(receiptNumber);
+        donation.setNotes(dto.getNotes());
+        donation.setJournalEntry(journalEntry);
         Donation savedDonation = donationRepository.save(donation);
 
         // Update Alumni Cumulative Total & Ranking Tier

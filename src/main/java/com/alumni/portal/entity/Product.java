@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Product {
 
     @Id
@@ -30,7 +29,6 @@ public class Product {
     @Column(name = "product_type", nullable = false)
     private ProductType productType;
 
-    @Builder.Default
     @Column(nullable = false)
     private BigDecimal price = BigDecimal.ZERO;
 

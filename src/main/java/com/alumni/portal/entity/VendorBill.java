@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class VendorBill {
 
     @Id
@@ -48,7 +47,6 @@ public class VendorBill {
     @Column(nullable = false)
     private BigDecimal amount;
 
-    @Builder.Default
     @Column(name = "bill_date", nullable = false)
     private LocalDate billDate = LocalDate.now();
 
@@ -56,14 +54,12 @@ public class VendorBill {
     private LocalDate dueDate;
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
     @Column(nullable = false)
     private BillStatus status = BillStatus.UNPAID;
 
     @Column
     private String notes;
 
-    @Builder.Default
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 }

@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Contact {
 
     @Id
@@ -43,7 +42,6 @@ public class Contact {
     @Column(name = "bank_details")
     private String bankDetails;
 
-    @Builder.Default
     @Column(nullable = false)
     private String status = "ACTIVE";
 
@@ -52,7 +50,6 @@ public class Contact {
     @Column(name = "contact_type", nullable = false)
     private ContactType contactType;
 
-    @Builder.Default
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 }
